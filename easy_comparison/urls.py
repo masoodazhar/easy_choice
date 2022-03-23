@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
-    path('dashboard/', include('dashboard.urls')),
+    path('dashboard', include('dashboard.urls')),
     path('cars/', include('car.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
