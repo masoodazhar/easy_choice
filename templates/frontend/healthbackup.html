@@ -1,0 +1,1080 @@
+{% extends 'frontend/master.html' %}
+{% load static %}
+{% block body %}
+<body style="background-color: #f2f7fa">
+
+    <section class="header bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 d-flex justify-content-between align-items-center">
+                    <img width="360px" height="106px"
+                        src="https://lemail.info/easychoice/wp-content/uploads/2021/01/Logo.png" class="logos h-auto"
+                        alt="" loading="lazy"
+                        srcset="https://lemail.info/easychoice/wp-content/uploads/2021/01/Logo.png 360w, https://lemail.info/easychoice/wp-content/uploads/2021/01/Logo-300x88.png 300w"
+                        sizes="(max-width: 360px) 100vw, 360px">
+                    <button class="d-block d-sm-none elementskit-menu-hamburger elementskit-menu-toggler">
+                        <span class="elementskit-menu-hamburger-icon"></span><span
+                            class="elementskit-menu-hamburger-icon"></span><span
+                            class="elementskit-menu-hamburger-icon"></span>
+                    </button>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-end">
+                    <div id="ekit-megamenu-wp-main-menu-new"
+                        class="elementskit-menu-container elementskit-menu-offcanvas-elements elementskit-navbar-nav-default elementskit_line_arrow ekit-nav-menu-one-page-no"
+                        ekit-dom-added="yes">
+                        <ul id="menu-wp-main-menu-new"
+                            class="elementskit-navbar-nav elementskit-menu-po-right submenu-click-on-icon">
+                            <li id="menu-item-6423"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6423 nav-item elementskit-mobile-builder-content"
+                                data-vertical-menu="750px"><a href="https://lemail.info/easychoice"
+                                    class="ekit-menu-nav-link">Home</a></li>
+                            <li id="menu-item-6424"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6424 nav-item elementskit-mobile-builder-content"
+                                data-vertical-menu="750px"><a href="https://lemail.info/easychoice/about/"
+                                    class="ekit-menu-nav-link">About</a></li>
+                            <li id="menu-item-6426"
+                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-6426 nav-item elementskit-dropdown-has relative_position elementskit-dropdown-menu-default_width elementskit-mobile-builder-content"
+                                data-vertical-menu="750px"><a href="#"
+                                    class="ekit-menu-nav-link ekit-menu-dropdown-toggle">Insurance<i
+                                        class="icon fas fa-chevron-down elementskit-submenu-indicator"></i></a>
+                                <ul class="elementskit-dropdown elementskit-submenu-panel">
+                                    <li id="menu-item-6500"
+                                        class="menu-item menu-item-type-post_type menu-item-object-instive-insurance current-menu-item menu-item-6500 nav-item elementskit-mobile-builder-content active"
+                                        data-vertical-menu="750px"><a
+                                            href="https://lemail.info/easychoice/service/car-insurance/"
+                                            class=" dropdown-item active">Car Insurance</a> </li>
+                                    <li id="menu-item-6505"
+                                        class="menu-item menu-item-type-post_type menu-item-object-instive-insurance menu-item-6505 nav-item elementskit-mobile-builder-content"
+                                        data-vertical-menu="750px"><a
+                                            href="https://lemail.info/easychoice/service/travel-insurance/"
+                                            class=" dropdown-item">Travel Insurance</a> </li>
+                                    <li id="menu-item-6501"
+                                        class="menu-item menu-item-type-post_type menu-item-object-instive-insurance menu-item-6501 nav-item elementskit-mobile-builder-content"
+                                        data-vertical-menu="750px"><a
+                                            href="https://lemail.info/easychoice/service/health-insurance/"
+                                            class=" dropdown-item">Health Insurance</a> </li>
+                                    <li id="menu-item-6508"
+                                        class="menu-item menu-item-type-post_type menu-item-object-instive-insurance menu-item-6508 nav-item elementskit-mobile-builder-content"
+                                        data-vertical-menu="750px"><a
+                                            href="https://lemail.info/easychoice/service/life-insurance/"
+                                            class=" dropdown-item">Life Insurance</a></li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-6427"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6427 nav-item elementskit-dropdown-has relative_position elementskit-dropdown-menu-default_width elementskit-mobile-builder-content"
+                                data-vertical-menu="750px"><a href="#"
+                                    class="ekit-menu-nav-link ekit-menu-dropdown-toggle">Takaful<i
+                                        class="icon fas fa-chevron-down elementskit-submenu-indicator"></i></a>
+                                <ul class="elementskit-dropdown elementskit-submenu-panel">
+                                    <li id="menu-item-6503"
+                                        class="menu-item menu-item-type-post_type menu-item-object-instive-insurance menu-item-6503 nav-item elementskit-mobile-builder-content"
+                                        data-vertical-menu="750px"><a
+                                            href="https://lemail.info/easychoice/service/takaful-car-insurance/"
+                                            class=" dropdown-item">Takaful Car Insurance</a> </li>
+                                    <li id="menu-item-6504"
+                                        class="menu-item menu-item-type-post_type menu-item-object-instive-insurance menu-item-6504 nav-item elementskit-mobile-builder-content"
+                                        data-vertical-menu="750px"><a
+                                            href="https://lemail.info/easychoice/service/takaful-travel-insurance/"
+                                            class=" dropdown-item">Takaful Travel Insurance</a></li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-6425"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6425 nav-item elementskit-mobile-builder-content"
+                                data-vertical-menu="750px"><a href="https://lemail.info/easychoice/contact/"
+                                    class="ekit-menu-nav-link">Contact</a></li>
+                        </ul>
+                        <div
+                            class="align-items-center d-flex d-sm-none elementskit-nav-identity-panel justify-content-between">
+                            <div class="elementskit-site-title">
+                                <a class="elementskit-nav-logo" href="https://lemail.info/easychoice" target="_self"
+                                    rel="">
+                                    <img width="360" height="106"
+                                        src="https://lemail.info/easychoice/wp-content/uploads/2021/10/2.1.png"
+                                        class="attachment-full size-full" alt="" loading="lazy"
+                                        srcset="https://lemail.info/easychoice/wp-content/uploads/2021/10/2.1.png 360w, https://lemail.info/easychoice/wp-content/uploads/2021/10/2.1-300x88.png 300w"
+                                        sizes="(max-width: 360px) 100vw, 360px">
+                                </a>
+                            </div>
+                            <button class="elementskit-menu-close elementskit-menu-toggler" type="button">X</button>
+                        </div>
+                    </div>
+                    <div
+                        class="elementskit-menu-overlay elementskit-menu-offcanvas-elements elementskit-menu-toggler ekit-nav-menu--overlay">
+                    </div>
+
+                </div>
+                <div class="col-md-4 d-none d-sm-block
+                ">
+                    <div
+                        class="elementskit-infobox text-left text-left icon-lef-right-aligin elementor-animation- media  ">
+                        <div class="elementskit-box-header elementor-animation-">
+                            <div class="elementskit-info-box-icon  text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30.55" height="26.001"
+                                    viewBox="0 0 30.55 26.001">
+                                    <g id="Group_42" data-name="Group 42" transform="translate(-244.045 -244.248)">
+                                        <path id="Path_72" data-name="Path 72"
+                                            d="M263.178,265.218a.542.542,0,0,1-.541.542h-7.091a.6.6,0,0,0-.289.075l-5.047,2.805.068-2.268a.581.581,0,0,0-.177-.432.59.59,0,0,0-.428-.18h-3.9a.542.542,0,0,1-.541-.542V254.224a.544.544,0,0,1,.541-.541h8.611v-1.192h-8.611a1.736,1.736,0,0,0-1.732,1.733v10.994a1.735,1.735,0,0,0,1.732,1.733h3.3l-.082,2.7a.588.588,0,0,0,.286.524.678.678,0,0,0,.6,0l5.832-3.241h6.921a1.732,1.732,0,0,0,1.732-1.733v-5.172h-1.191Z"
+                                            fill="#fff" opacity="0.5"></path>
+                                        <g id="Group_41" data-name="Group 41">
+                                            <g id="Group_40" data-name="Group 40">
+                                                <path id="Path_73" data-name="Path 73"
+                                                    d="M259.891,251a1.236,1.236,0,1,0,1.235,1.236h0A1.235,1.235,0,0,0,259.891,251Z"
+                                                    fill="#fff"></path>
+                                                <path id="Path_74" data-name="Path 74"
+                                                    d="M264.822,251a1.236,1.236,0,1,0,1.232,1.239v0A1.233,1.233,0,0,0,264.825,251Z"
+                                                    fill="#fff"></path>
+                                                <path id="Path_75" data-name="Path 75"
+                                                    d="M269.752,251a1.236,1.236,0,1,0,1.232,1.239v0A1.232,1.232,0,0,0,269.756,251Z"
+                                                    fill="#fff"></path>
+                                            </g>
+                                            <path id="Path_76" data-name="Path 76"
+                                                d="M272.863,244.248H256.121a1.732,1.732,0,0,0-1.732,1.733v6.509h0v1.192h0V258.3a1.732,1.732,0,0,0,1.732,1.733h9.249l4.614,3.255a.684.684,0,0,0,.616.041.587.587,0,0,0,.34-.528v-2.768h1.923A1.733,1.733,0,0,0,274.6,258.3h0V245.982A1.733,1.733,0,0,0,272.863,244.248Zm.524,14.052a.541.541,0,0,1-.541.541h-2.519a.6.6,0,0,0-.6.6v2.213l-3.828-2.7a.6.6,0,0,0-.34-.109h-9.443a.541.541,0,0,1-.541-.541V245.982a.54.54,0,0,1,.527-.555h16.739a.541.541,0,0,1,.541.541Z"
+                                                fill="#fff"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <h3 class="elementskit-info-box-title">
+                                24 hours every day </h3>
+                            <p>(+92) 303-3781919 </p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-result-car py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="d-flex justify-content-between listing-top">
+                        <div class="listing-title-left">
+                            <span class="car-make">Traveling To:<span class="fw-bold"> USA</span></span>
+                            <span class="car-make">Passenger Traveling:<span class="fw-bold"> Family</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-between listing-top">
+                        <div class="listing-title-left">
+                            <span class="car-make">Departing On:<span class="fw-bold"> 02 November, 2021
+                                </span></span>
+                            <span class="car-make">Returning On:<span class="fw-bold"> 02 November, 2021
+                                </span></span>
+                        </div>
+                        <div class="listing-title-right d-sm-block d-none">
+                            <button class="btn border">
+                                <a href="#">Edit</a>
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5 d-block d-sm-flex justify-content-end listing-top align-items-center">
+                    <div class="listing-title-left me-2">
+                        <span class="car-make">Quote Id:<span class="fw-bold"> 6r5tq</span></span>
+                    </div>
+                    <div class="listing-title-right d-block d-sm-none">
+                        <button class="btn border">
+                            <a href="#">Edit Search</a>
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section section-listing-car">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="search-title">Showing 10 Plans</h4>
+                </div>
+            </div>
+            <div class="row ro">
+                <div class="col-md-3 mb-4 order-last order-sm-first">
+                    <div class="sidebar p-4">
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Insurance Companies</h4>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    EFU General </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    TPL </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Premier Insurance </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Jubilee General </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Adamjee </label>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Medical Coverage
+                                </h4>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    All </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    $ 50,000 - $ 75,000 </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    $ 75,000 - $ 1 Lac </label>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Covid Coverage</h4>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Yes </label>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Price Range</h4>
+                            </div>
+                            <div class="wrapper-price-range">
+
+                                <div class="slider-wrapper">
+                                    <div id="slider-range"></div>
+
+                                    <div class="range-wrapper">
+                                        <div class="range"></div>
+
+                                        <div class="gear-wrapper">
+                                            <div class="gear-large gear-one">
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                            </div>
+                                            <div class="gear-large gear-two">
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="marker marker-0"><sup>$</sup>10,000</div>
+                                    <div class="marker marker-100"><sup>$</sup>110,000+</div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Sort</h4>
+                            </div>
+                            <div class="form-check form-switch"> <input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckChecked"> <label class="form-check-label"
+                                    for="flexSwitchCheckChecked">Recomended</label>
+                            </div>
+                            <div class="form-check form-switch"> <input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckChecked"> <label class="form-check-label"
+                                    for="flexSwitchCheckChecked">Cheapest</label>
+                            </div>
+                            <div class="form-check form-switch"> <input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckChecked"> <label class="form-check-label"
+                                    for="flexSwitchCheckChecked">Expensive</label>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Compare Policy</h4>
+                            </div>
+                            <div class="com-cont">
+                                <div class="compare-basket">
+                                    <a class="action action--button action--compare" data-bs-toggle="modal"
+                                        data-bs-target="#compare-modal">
+                                        <i class="fa fa-check"></i>
+                                        <span class="action__text">Compare adasd</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="listing listing-travel">
+                        <div class="badge-discount"><span>30%</span><span> OFF</span></div>
+                        <div class="row container-list">
+                            <div class="col-md-2 policy-col-one d-block d-sm-flex align-items-center">
+                                <div class="kotaks">
+                                    <div class="instant-tag text-center">
+                                        <!-- <img src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/instatnt_img.png"> -->
+                                        <span class="">Instant</span>
+                                    </div>
+                                    <div class="center plan-name ">
+                                        <h4 class="nomargin darkergray pckg-name">ViaCare RestOfTheWorld
+                                        </h4>
+                                    </div>
+                                    <div class="thumb">
+                                        <img src="assets/img/icon/bSsnxMUc.jpg" class="w-100 product__image">
+                                    </div>
+                                    <div class="note text-center">
+                                        <span>COVID-19 Covered</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="kotak">
+                                    <span class="rate">Medical cover:</span>
+                                    <span class="rate-number">$10,000</span>
+                                </div>
+                                <div class="kotak-bottom mt-2 ">
+                                    <span class="rate">Delayed Departure:</span>
+                                    <span class="rate-number">$250</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="kotak">
+                                    <span class="rate">Coverage Upto:</span>
+                                    <span class="rate-number">31 <span class="rate-month">days</span>
+                                    </span>
+                                </div>
+                                <div class="kotak-bottom mt-2 ">
+                                    <span class="rate">Covid-19:</span>
+                                    <span class="rate-number">$250</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="kotak">
+                                    <span class="rate">Loss of Baggage:
+
+                                    </span>
+                                    <span class="rate-number">$250 </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 d-block d-sm-flex align-items-center">
+                                <div class="kotaks">
+                                    <div class="enquiry">
+                                        <div class="right-price text-end mb-4">
+                                            <h3 class="price-right text-end fw-bold text-black">Rs. sdfgh
+                                            </h3>
+                                            <span class="class-policy">Premium</span>
+                                        </div>
+                                        <label
+                                            class="btn btn-secondary buy_now enquire-btn mb-2 w-100 action action--compare-add"><input
+                                                class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i
+                                                class="fa fa-check"></i><span>Compare</span></label>
+                                        <a class="btn btn-secondary buy_now enquire-btn mb-2 w-100"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enquiry</a>
+                                        <a href="buy.html" class="btn btn-secondary buy_now buy-btn w-100">Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="container-list-second">
+                                    <div class="text-center">
+                                        <span class="listing-detail"><a data-bs-toggle="collapse" href="#listone"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample">See
+                                                Detail</a>
+                                        </span>
+                                    </div>
+                                    <div class="collapse" id="listone">
+                                        <div class="card card-body my-2 detail-one">
+                                            <table class="table table-hover table-listing-detail table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Medical Benefits</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Accidental Death dan Disability<br><span>$10,000</span></td>
+                                                        <td>Medical Expenses & Hospitalization<br><span>$10,000</span>
+                                                        </td>
+                                                        <td>Accidental Death dan Disability<br><span>$10,000</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Delivery of medicine<br><span>Actual</span></td>
+                                                        <td>Emergency Dental Care</td>
+                                                        <td>Accidental Death dan Disability<br><span>$10,000</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Return of dependandt children<br><span>Actual</span></td>
+                                                        <td>Emergency Dental Care</td>
+                                                        <td>Accidental Death dan Disability<br><span>$10,000</span></td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <div class="card card-body my-2 detail-two">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="title-detail-two">
+                                                        <h3>Detail Policy</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row-table-detail mt-3 border-bottom">
+                                                <div class="col-md-3">
+                                                    <div class="title-detail">
+                                                        <h3>Main Coverage</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                                            <h3>Accident Damages</h3>
+                                                        </div>
+                                                        <div class="table-detail-icon">
+                                                            <i class="fas fa-check-square"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                                        <h3>Accident Damages</h3>
+                                                    </div>
+                                                    <div class="table-detail-icon">
+                                                        <i class="fas fa-check-square"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                                    <h3>Accident Damages</h3>
+                                                </div>
+                                                <div class="table-detail-icon">
+                                                    <i class="fas fa-check-square"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                                <h3>Accident Damages</h3>
+                                            </div>
+                                            <div class="table-detail-icon">
+                                                <i class="fas fa-check-square"></i>
+                                            </div>
+                                        </div>
+                                        <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                            <h3>Accident Damages</h3>
+                                        </div>
+                                        <div class="table-detail-icon">
+                                            <i class="fas fa-check-square"></i>
+                                        </div>
+                                    </div>
+                                    <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                        <h3>Accident Damages</h3>
+                                    </div>
+                                    <div class="table-detail-icon">
+                                        <i class="fas fa-check-square"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-table-detail  mt-3 border-bottom">
+                        <div class="col-md-3">
+                            <div class="title-detail">
+                                <h3>Third Party Coverage</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                    <h3>Accident Damages</h3>
+                                </div>
+                                <div class="table-detail-icon">
+                                    <i class="fas fa-check-square"></i>
+                                </div>
+                            </div>
+                            <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                                <h3>Accident Damages</h3>
+                            </div>
+                            <div class="table-detail-icon">
+                                <i class="fas fa-check-square"></i>
+                            </div>
+                        </div>
+                        <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                            <h3>Accident Damages</h3>
+                        </div>
+                        <div class="table-detail-icon">
+                            <i class="fas fa-check-square"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                        <h3>Accident Damages</h3>
+                    </div>
+                    <div class="table-detail-icon">
+                        <i class="fas fa-check-square"></i>
+                    </div>
+                </div>
+                <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                    <h3>Accident Damages</h3>
+                </div>
+                <div class="table-detail-icon">
+                    <i class="fas fa-check-square"></i>
+                </div>
+            </div>
+            <div class="align-items-center col-md-4 d-flex justify-content-between mb-2">
+                <div class=" table-detail">
+                    <h3>Accident Damages</h3>
+                </div>
+                <div class="table-detail-icon">
+                    <i class="fas fa-check-square"></i>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="row  row-table-detail  mt-3 border-bottom">
+            <div class="col-md-3">
+                <div class="title-detail">
+                    <h3>Value Added Features</h3>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                        <h3>Accident Damages</h3>
+                    </div>
+                    <div class="table-detail-icon">
+                        <i class="fas fa-check-square"></i>
+                    </div>
+                </div>
+                <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                    <h3>Accident Damages</h3>
+                </div>
+                <div class="table-detail-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+            </div>
+            <div class="align-items-center col-md-4 d-flex justify-content-between mb-2"">
+                                                        <div class=" table-detail">
+                <h3>Accident Damages</h3>
+            </div>
+            <div class="table-detail-icon">
+                <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+
+        </div>
+        </div>
+        </div>
+    </section>
+    <section class="footer-top mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="menu-footer">
+                        <h4>Our COompany</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="">Our Story</a>
+                            </li>
+                            <li>
+                                <a href="">News & Blog</a>
+                            </li>
+                            <li>
+                                <a href="">Careers</a>
+                            </li>
+                            <li>
+                                <a href="">Customer Support</a>
+                            </li>
+                            <li>
+                                <a href="">Website Accessibility</a>
+                            </li>
+                            <li>
+                                <a href="">Our Story</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="menu-footer">
+                        <h4>CORPORATE INFO</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="">Auto Insurance</a>
+                            </li>
+                            <li>
+                                <a href="">Home Insurance</a>
+                            </li>
+                            <li>
+                                <a href="">Agent Locator</a>
+                            </li>
+                            <li>
+                                <a href="">Express Access</a>
+                            </li>
+                            <li>
+                                <a href="">Money Back Policy</a>
+                            </li>
+                            <li>
+                                <a href="">Life Insurance Companies</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-top-three">
+                        <h4>GET IN TOUCH</h4>
+                        <p>We're here to listen:</p>
+                        <ul class="list-unstyled">
+                            <li class="elementor-icon-list-item">
+                                <span class="elementor-icon-list-icon">
+                                    <i aria-hidden="true" class="far fa-building"></i> </span>
+                                <span class="elementor-icon-list-text">2390 NW 2nd Ave, Miami FL 33127, USA</span>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                                <a href="tel:03033781919">
+
+                                    <span class="elementor-icon-list-icon">
+                                        <i aria-hidden="true" class="fas fa-phone-alt"></i> </span>
+                                    <span class="elementor-icon-list-text"><b>(+92) 303-3781919</b></span>
+                                </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                                <span class="elementor-icon-list-icon">
+                                    <i aria-hidden="true" class="far fa-clock"></i> </span>
+                                <span class="elementor-icon-list-text">9am to 7pm EST Monday to Friday</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-top-last">
+                        <h4>NEWSLETTER </h4>
+                        <p>Receive resources & tools that can help you prepare for the future. You can cancel anytime.
+                        </p>
+                        <div class="elementskit_input_element_container mb-2 ">
+                            <input type="email" name="email" class="ekit_mail_email ekit_form_control "
+                                placeholder="YOUR MAIL HERE" required="">
+
+                        </div>
+                        <div class="ekit_submit_input_holder elementskit_input_wraper">
+                            <button type="submit" class="ekit-mail-submit" name="ekit_mail_chimp">
+
+                                <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                Subscribe Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-left">
+                        <p><i class="far fa-copyright"></i> 2021, Easy Choice.<br>All Rights Reserved. Worked by <a
+                                href="http://analysteye.com/" target="_blank" rel="noopener"><strong><span
+                                        style="color: #ffffff;">Analyst
+                                        Eye</span></strong></a>.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-middle text-center mb-4 mb-ms-0">
+                        <a href="#">
+                            <img width="178" height="46"
+                                src="{% static 'logo-white.png' %}"
+                                class="attachment-medium size-medium"> </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-right">
+                        <ul class="list-unstyled text-center text-sm-end">
+                            <li class="facebook">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="linkedin">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                            <li class="youtube">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-youtube"></i></a>
+                            </li>
+                            <li class="mail">
+                                <a href="#" class="btn btn-outline-primary"><i class="far fa-envelope"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <a href="#0" class="cd-top"><i class="fas fa-long-arrow-alt-up"></i></a>
+
+    <section class="compare">
+        <button class="action action--close">
+            <i class="fa fa-times"></i>
+            <span class="action__text action__text--invisible">Close comparison overlay</span>
+        </button>
+    </section>
+    <div class="modal modal-enquiry fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Want more details?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-floating row g-3">
+                        <div class="col-md-6">
+                            <label for="inputEmail4" class="form-label">Full name *</label>
+                            <input type="email" class="form-control" id="inputEmail4">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPassword4" class="form-label">Tel / Cell number *
+                            </label>
+                            <input type="password" class="form-control" id="inputPassword4">
+                        </div>
+                        <div class="col-12">
+                            <label for="inputAddress" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="inputState" class="form-label">City</label>
+                            <select id="inputState" class="form-select">
+                                <option selected>Choose...</option>
+                                <option>City A</option>
+                                <option>City B</option>
+                                <option>City C</option>
+
+
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary"><a href="#">Enquiry Now</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal-compare fade" id="compare-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="compare-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-custom-secondary text-center" id="comparisonModalLabel">Product
+                        Comparison</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive compare-packages">
+                        <table class="table table-bordered com-pack">
+                            <thead>
+                                <tr>
+                                    <td class="removeMe"></td>
+                                    <td class="removeMe"><i class="fas fa-times"></i></td>
+                                    <td class="removeMe"><i class="fas fa-times"></i></td>
+                                    <td class="removeMe"><i class="fas fa-times"></i></td>
+                                </tr>
+                                <tr>
+                                    <th width="240px"></th>
+                                    <th class="text-center"><img src="assets/img/icon/bSsnxMUc.jpg"
+                                            class="compare-image">
+                                        <div class="detail-policy-title"><span>Premium</span></div>
+                                    </th>
+                                    <th class="text-center"><img src="assets/img/icon/bSsnxMUc.jpg"
+                                            class="compare-image">
+                                        <div class="detail-policy-title"><span>Premium</span></div>
+                                    </th>
+                                    <th class="text-center"><img src="assets/img/icon/bSsnxMUc.jpg"
+                                            class="compare-image">
+                                        <div class="detail-policy-title"><span>Premium</span></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>Medical cover:</td>
+                                    <td>$10,000                               </td>
+                                    <td>$10,000
+                                    </td>
+                                    <td>$10,000
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Coverage Upto:
+                                    </td>
+                                    <td>31 days
+                                    </td>
+                                    <td>31 days
+                                    </td>
+                                    <td>31 days
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Loss of Baggage:
+                                    </td>
+                                    <td>$200
+                                    </td>
+                                    <td>$200
+                                    </td>
+                                    <td>$200
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Delayed Departure:
+                                    </td>
+                                    <td>$100
+                                    </td>
+                                    <td>$100
+                                    </td>
+                                    <td>$100
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Covid-19:
+                                    </td>
+                                    <td>$500
+                                    </td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Accidental Death & Disability:
+                                        :
+                                    </td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Medical Expenses & Hospitalization:
+                                    </td>
+                                    <td><i class="fas fa-times-circle"></i></td>
+                                    <td><i class="fas fa-check-square"></i></td>
+                                    <td><i class="fas fa-times-circle"></i></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Repatriation in case of illness/injury:
+                                    </td>
+                                    <td><i class="fas fa-check-square"></i></td>
+                                    <td><i class="fas fa-check-square"></i></td>
+                                    <td><i class="fas fa-check-square"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary buy-btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
+
+{% block js %}
+<script>
+    //Get the button
+    /* Place this code in your JS file */
+    jQuery(document).ready(function ($) {
+        // browser window scroll (in pixels) after which the "back to top" link is shown
+        var offset = 300,
+            //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+            offset_opacity = 1200,
+            //duration of the top scrolling animation (in ms)
+            scroll_top_duration = 350,
+            //grab the "back to top" link
+            $back_to_top = $('.cd-top');
+
+        //hide or show the "back to top" link
+        $(window).scroll(function () {
+            ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $back_to_top.addClass('cd-fade-out');
+            }
+        });
+
+        //smooth scroll to top
+        $back_to_top.on('click', function (event) {
+            event.preventDefault();
+            $('body,html').animate({
+                scrollTop: 10
+            }, scroll_top_duration
+            );
+            $('body,html').animate({
+                scrollTop: 0
+            }, 0
+            );
+        });
+    });
+</script>
+<script>
+    $(function () {
+
+        // Initiate Slider
+        $('#slider-range').slider({
+            range: true,
+            min: 10000,
+            max: 110000,
+            step: 100,
+            values: [45000, 75000]
+        });
+
+        // Move the range wrapper into the generated divs
+        $('.ui-slider-range').append($('.range-wrapper'));
+
+        // Apply initial values to the range container
+        $('.range').html('<span class="range-value"><sup>$</sup>' + $('#slider-range').slider("values", 0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span><span class="range-divider"></span><span class="range-value"><sup>$</sup>' + $("#slider-range").slider("values", 1).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span>');
+
+        // Show the gears on press of the handles
+        $('.ui-slider-handle, .ui-slider-range').on('mousedown', function () {
+            $('.gear-large').addClass('active');
+        });
+
+        // Hide the gears when the mouse is released
+        // Done on document just incase the user hovers off of the handle
+        $(document).on('mouseup', function () {
+            if ($('.gear-large').hasClass('active')) {
+                $('.gear-large').removeClass('active');
+            }
+        });
+
+        // Rotate the gears
+        var gearOneAngle = 0,
+            gearTwoAngle = 0,
+            rangeWidth = $('.ui-slider-range').css('width');
+
+        $('.gear-one').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+        $('.gear-two').css('transform', 'rotate(' + gearTwoAngle + 'deg)');
+
+        $('#slider-range').slider({
+            slide: function (event, ui) {
+
+                // Update the range container values upon sliding
+
+                $('.range').html('<span class="range-value"><sup>$</sup>' + ui.values[0].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span><span class="range-divider"></span><span class="range-value"><sup>$</sup>' + ui.values[1].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span>');
+
+                // Get old value
+                var previousVal = parseInt($(this).data('value'));
+
+                // Save new value
+                $(this).data({
+                    'value': parseInt(ui.value)
+                });
+
+                // Figure out which handle is being used
+                if (ui.values[0] == ui.value) {
+
+                    // Left handle
+                    if (previousVal > parseInt(ui.value)) {
+                        // value decreased
+                        gearOneAngle -= 7;
+                        $('.gear-one').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    } else {
+                        // value increased
+                        gearOneAngle += 7;
+                        $('.gear-one').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    }
+
+                } else {
+
+                    // Right handle
+                    if (previousVal > parseInt(ui.value)) {
+                        // value decreased
+                        gearOneAngle -= 7;
+                        $('.gear-two').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    } else {
+                        // value increased
+                        gearOneAngle += 7;
+                        $('.gear-two').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    }
+
+                }
+
+                if (ui.values[1] === 110000) {
+                    if (!$('.range-alert').hasClass('active')) {
+                        $('.range-alert').addClass('active');
+                    }
+                } else {
+                    if ($('.range-alert').hasClass('active')) {
+                        $('.range-alert').removeClass('active');
+                    }
+                }
+            }
+        });
+
+        // Prevent the range container from moving the slider
+        $('.range, .range-alert').on('mousedown', function (event) {
+            event.stopPropagation();
+        });
+
+    });
+</script>
+<!-- <script src="assets/select2/select2.min.js"></script> -->
+<!-- <script src="assets/select2/select2cascades.js"></script> -->
+<!-- <script src="assets/custom.js"></script> -->
+
+{% endblock %}

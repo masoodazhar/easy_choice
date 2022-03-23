@@ -1,0 +1,455 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from colorlib.com/polygon/gentelella/by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Mar 2021 00:47:50 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <title>Easy Compare| </title>
+
+    <link href="{% static 'backend/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- <link href="{% static 'backend/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet"> -->
+
+    <link href="{% static 'backend/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+
+    <link href="{% static 'backend/vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+
+    <link href="{% static 'backend/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'backend/vendors/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'backend/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+    <link href="{% static 'backend/build/css/custom.min.css' %}" rel="stylesheet">
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="{% static 'backend/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+{% block css %}
+{% endblock %}
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="{% url 'index' %}" class="site_title"><i class="fa fa-paw"></i> <span>Easy Compare</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="{% static 'backend/images/img.jpg' %}" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>Admin</h2>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <!-- <li><a href=""><i class="fa fa-book"></i> About</a></li> -->
+                                <li><a href="{% url 'CreateCompany'%}"><i class="fa fa-home"></i>  Add Company</a></li>
+                                <li><a href="{% url 'inquiries'%}"><i class="fa fa-user"></i>  Inquiries</a></li>
+
+                                <li><a><i class="fa fa-bar-chart"></i> Buy Policy <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        
+                                        <li><a href="{% url 'buyPolicy'%}">By Policy Cars</a></li>
+                                        <li><a href="{% url 'buyPolicyTravel'%}">By Policy Travel</a></li>
+                                        <li><a href="{% url 'buyPolicyHealth'%}">By Policy Health</a></li>
+                                 
+                                      
+                                        <!-- <li><a href="index3.html"> Have A Question</a></li> -->
+                                    </ul>
+                                </li>                                
+                                <li><a><i class="fa fa-car"></i> Manage Car Data <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        
+                                        
+                                        <li><a href="{% url 'CreateCars'%}">Add New Car</a></li>
+                                        <li><a href="{% url 'CreateCarsModel'%}">Add Car Model</a></li>
+                                        <li><a href="{% url 'CreateFeature'%}">Add Features</a></li>
+                                        <li><a href="{% url 'CreatePolicy'%}">Add Policy</a></li>
+                                      
+                                      
+                                        <!-- <li><a href="index3.html"> Have A Question</a></li> -->
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-send"></i> Manage Travel Data <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        
+                                        <li><a href="{% url 'CreateFeatureTravel'%}">Add Features</a></li>
+                                        <li><a href="{% url 'CreatePolicyTravel'%}">Add Policy</a></li>
+                                 
+                                      
+                                        <!-- <li><a href="index3.html"> Have A Question</a></li> -->
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-building"></i> Manage Health Data <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        
+                                        <li><a href="{% url 'CreateFeatureHealth'%}">Add Features</a></li>
+                                        <li><a href="{% url 'CreatePolicyHealth'%}">Add Policy</a></li>
+                                 
+                                      
+                                        <!-- <li><a href="index3.html"> Have A Question</a></li> -->
+                                    </ul>
+                                </li>
+                                
+                               
+                                
+                                <!-- <li><a><i class="fa fa-desktop"></i> Digital Packages <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="form.html">Privacy Package</a></li>
+                                        <li><a href="form.html">Professional Package</a></li>
+                                        <li><a href="form.html">Prestige Package</a></li>
+                                        <li><a href="form.html">All Inclusive Package</a></li>
+                                        <li><a href="form.html">Non-Residents Package</a></li>
+                                        <li><a href="form.html">LLP Package</a></li>
+                                        <li><a href="form.html">Guarantee Package</a></li>
+                                        <li><a href="form.html">eSeller Package</a></li>
+                                        <li><a href="form.html">Reserve a Company Name</a></li>
+                                        <li><a href="form.html">View All Packages</a></li>
+                                    </ul>
+                                </li> -->
+                                
+                                <!-- <li><a><i class="fa fa-question-circle"></i> Help & Advice <span
+                                            class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="chartjs.html">Our Online Company Manager</a></li>
+                                        <li><a href="chartjs.html">Our 4 Step Guide to Forming a Company</a></li>
+                                        <li><a href="chartjs.html">Information Required to Set Up a Company</a></li>
+                                        <li><a href="chartjs.html">Introduction to Company Formation</a></li>
+                                        <li><a href="chartjs.html">Starting Your Own Business - The Ultimate Guide</a></li>
+                                        <li><a href="chartjs.html">Post Incorporation Support</a></li>
+                                        <li><a href="chartjs.html">Companies Limited by Shares</a></li>
+                                        <li><a href="chartjs.html">Companies Limited by Guarantee</a></li>
+                                        <li><a href="chartjs.html">Limited Liability Partnerships</a></li>
+                                        <li><a href="chartjs.html">Directors and Secretaries</a></li>
+                                        <li><a href="chartjs.html">Shares and Shareholders</a></li>
+                                        <li><a href="chartjs.html">Annual Filing Requirements</a></li>
+                                    </ul>
+                                </li> -->
+                                
+                            </ul>
+                        </div>
+                    
+                    </div>
+
+
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <nav class="nav navbar-nav">
+                        <ul class=" navbar-right">
+                            <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
+                                    id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="{% static 'backend/images/img.jpg' %}" alt="">Admin
+                                </a>
+                                <div class="dropdown-menu dropdown-usermenu pull-right"
+                                    aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="javascript:;"> Profile</a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">Help</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i>
+                                        Log Out</a>
+                                </div>
+                            </li>
+                            <li role="presentation" class="nav-item dropdown open">
+                                <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
+                                    data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">0</span>
+                                </a>
+                                <ul class="dropdown-menu list-unstyled msg_list" role="menu"
+                                    aria-labelledby="navbarDropdown1">
+                                    <!-- <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="{% static 'backend/images/img.jpg' %}" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="{% static 'backend/images/img.jpg' %}" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="{% static 'backend/images/img.jpg' %}" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-item">
+                                            <span class="image"><img src="{% static 'backend/images/img.jpg' %}" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li> -->
+                                    <li class="nav-item">
+                                        <div class="text-center">
+                                            <a class="dropdown-item">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="right_col" role="main">
+
+            <div class="row">
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-caret-square-o-right"></i>
+                        </div>
+                        <div class="count">{{packages}}</div>
+                        <h3> Packages </h3>
+                        <p>All Packages (Policies).</p>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-comments-o"></i>
+                        </div>
+                        <div class="count">{{Inquirer}}</div>
+                        <h3> Requests </h3>
+                        <p>All Inquirer Requests.</p>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-sort-amount-desc"></i>
+                        </div>
+                        <div class="count">{{CompanyCount}}</div>
+                        <h3>Companies</h3>
+                        <p>All Registered Companies.</p>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                    <div class="tile-stats">
+                        <div class="icon"><i class="fa fa-check-square-o"></i>
+                        </div>
+                        <div class="count">{{totalClients}}</div>
+                        <h3>Client</h3>
+                        <p>All Clients .</p>
+                    </div>
+                </div>
+            </div>
+
+            {% block body %}{% endblock %}
+
+            </div>
+            <footer>
+                <div class="pull-right">
+                    Easy Compare Developed by<a href="" target="_blank" > .</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="{% static 'backend/vendors/jquery/dist/jquery.min.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/fastclick/lib/fastclick.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/nprogress/nprogress.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/Chart.js/dist/Chart.min.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/gauge.js/dist/gauge.min.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/iCheck/icheck.min.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/skycons/skycons.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.time.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.resize.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+    <script src="{% static 'backend/vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/flot.curvedlines/curvedLines.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/DateJS/build/date.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
+    <script src="{% static 'backend/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'backend/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+    <script src="{% static 'backend/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="{% static 'backend/build/js/custom.min.js' %}"></script>
+
+    {% block js %}
+
+    {% endblock %}
+    <script>
+        $(document).ready(function() {    
+            $('select').select2({
+
+            })
+            $('textarea').summernote();
+            // $('select').select2({
+            //     width: 'resolve',
+            //     theme: 'classic',
+            // });
+
+            // SORTABLE
+                const groups = document.getElementById('sortable');
+                let sortable = Sortable.create(groups,{
+                    group: "sorting",
+                    // sort: true,
+                    onEnd: function(evt) {
+                        
+                        SortedData = []
+                        index = 1
+                        $(evt.item).parents('tbody').find('tr').each(function(i, data) {
+                            // $(this).find('span').text($(this).index() + 1);
+                            $(this).find('input').eq(1).val(index);
+                            pk = $(this).find('input').eq(0).val();
+                            val = $(this).find('input').eq(1).val();
+                            index++;
+                            SortedData.push({pkdata:pk, valdata:val})
+                        });
+                        fullData = JSON.stringify(SortedData)
+                        console.log(fullData)
+                        $.ajax({
+                            url : '',
+                            method : 'GET',
+                            data: {SortedData:fullData},
+                            succeed: function(data){
+                                console.log(data);
+                            }
+                        })
+                    }
+                });
+
+                // $("#sortable").sortable({
+                //     stop: function(event, ui) {
+                //         alert("New position: " + ui.item.index());
+                //     }
+                // });
+
+                // $("#sortable").sortable({
+                //     start: function (event, ui) {
+                //         $(ui.item).data("startindex", ui.item.index());
+                //     },
+                //     stop: function (event, ui) {
+                //         self.sendUpdatedIndex(ui.item);
+                //     }
+                // }).disableSelection();
+
+              $('table').dataTable({
+                "order": []
+              })
+       
+        });
+    </script>
+</body>
+
+<!-- Mirrored from colorlib.com/polygon/gentelella/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Mar 2021 00:48:06 GMT -->
+
+</html>

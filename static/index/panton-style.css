@@ -1,0 +1,46 @@
+@font-face {
+	font-display: swap;
+	font-family: 'Panton Regular';
+	font-style: normal;
+	font-weight: normal;
+	src: url('Panton-Regular.ttf') 
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Panton Light';
+	font-style: normal;
+	font-weight: normal;
+	src: url('Panton-Light.ttf') 
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Panton ExtraBold';
+	font-style: normal;
+	font-weight: normal;
+	src: url('Panton-ExtraBold.ttf')
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Panton Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: url('Panton-Bold.ttf') 
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Panton SemiBold';
+	font-style: normal;
+	font-weight: normal;
+	src: url('Panton-SemiBold.ttf') 
+}
+@font-face {
+	font-display: swap;
+	font-family: 'Adobe Arabic Regular';
+	font-style: normal;
+	font-weight: normal;
+	src: url('adobe-arabic-regular-1.ttf') 
+}

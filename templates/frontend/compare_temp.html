@@ -1,0 +1,90 @@
+<div class="table-responsive compare-packages">
+    <table class="table table-bordered com-pack" border="0">
+        <thead>
+            <tr>
+                <td class="removeMe"></td>
+                {% for data in allData %}
+                <td class="removeMe"><i class="fas fa-times"></i></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th width="240px"></th>
+                {% for data in allData %}
+                    <th class="text-center"><img style="width:200px; height: 100px;" src="{{data.policy.company.logo.url}}" class="compare-image">
+                        <div class="detail-policy-title"><span>{{data.policy}}</span></div>
+                    </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in get_unique_features %}
+            <tr>
+                <td>{{data}}</td>
+                {% for alldata in allData %}
+                <td>
+
+                    {% for mf in alldata.main_coverage %}
+                        {% if data == mf.feature %}
+
+                        {% if mf.status == 'yes' %}
+                            <i class="fas fa-check-square"></i>
+                    
+                        {% elif mf.status == 'no' %}
+                            <i class="fas fa-times-circle"></i>
+
+                        {% else %}
+                            {{ mf.status }}
+                        {% endif %}
+                        
+                        {% endif %}
+                    {% endfor %}
+                    {% for mf in alldata.third_party_coverage %}
+                        {% if data == mf.feature %}
+
+                        {% if mf.status == 'yes' %}
+                            <i class="fas fa-check-square"></i>
+                    
+                        {% elif mf.status == 'no' %}
+                            <i class="fas fa-times-circle"></i>
+
+                        {% else %}
+                            {{ mf.status }}
+                        {% endif %}
+                        
+                        {% endif %}
+                    {% endfor %}
+                    {% for mf in alldata.value_added_features %}
+                        {% if data == mf.feature %}
+
+                        {% if mf.status == 'yes' %}
+                            <i class="fas fa-check-square"></i>
+                    
+                        {% elif mf.status == 'no' %}
+                            <i class="fas fa-times-circle"></i>
+
+                        {% else %}
+                            {{ mf.status }}
+                        {% endif %}
+                        
+                        {% endif %}
+                    {% endfor %}
+
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            <!-- <tr>
+                <td>Total Coverage</td>
+                <td>3</td>
+                <td>6</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Online Doctor Consultation </td>
+                <td><i class="fas fa-check-square"></i></td>
+                <td><i class="fas fa-check-square"></i></td>
+                <td><i class="fas fa-check-square"></i></td>
+            </tr> -->
+        </tbody>
+    </table>
+</div>

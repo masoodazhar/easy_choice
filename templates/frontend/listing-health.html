@@ -1,0 +1,1197 @@
+{% extends 'frontend/master.html' %}
+{% load static %}
+{% block body %}
+    <section class="section-result-car py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="d-flex justify-content-between listing-top">
+                        <div class="listing-title-left">
+                            <span class="car-make">Insurance For:<span class="fw-bold">
+                                 {{formData.type|title}}
+                                 
+                                </span></span>
+                            <span class="car-make">Age:<span class="fw-bold"> 
+                                {% if formData.type == 'family' %}
+                                    Husband: {{formData.age}}, 
+                                    Wife: {{formData.wife_age}},
+                                    
+                                    {% for age in formData.kids %}
+                                         Kid{{forloop.counter}}: {{age}}
+                                         {% if not forloop.last %}
+                                            ,
+                                         {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    {{formData.age}}
+                                {% endif %}
+                            </span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex justify-content-between listing-top">
+                        <div class="listing-title-left">
+                            <span class="car-make">
+                                <span class="fw-bold"> 
+                                    {% if formData.type == 'self' %}
+                                    Gender: {{formData.gender}}
+                                 {% endif %}
+                                </span>
+                            </span>
+                            <!-- <span class="car-make">Returning On:
+                                <span class="fw-bold"> 02 November, 2021</span>
+                            </span> -->
+                        </div>
+                        <div class="listing-title-right d-sm-block d-none">
+                            <button class="btn border">
+                                <a href="{% url 'healthForm' %}">Edit</a>
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5 d-block d-sm-flex justify-content-end listing-top align-items-center">
+                    <div class="listing-title-left me-2">
+                        <span class="car-make">Quote Id:<span class="fw-bold"> {{quoteID}}</span></span>
+                    </div>
+                    <div class="listing-title-right d-block d-sm-none">
+                        <button class="btn border">
+                            <a href="{% url 'healthForm' %}">Edit Search</a>
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section section-listing-car">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h4 class="search-title">
+                        Showing {{ page_obj|length }} Plans
+                    </h4>
+                </div>
+                {% for mesage in messages %}
+                    <div class="col-6">
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <strong>Thank You!</strong> {{mesage.message}}.
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row ro">
+                <div class="col-md-3 mb-4 order-last order-sm-first">
+                    <div class="sidebar p-4">
+                        <form action="" class="filter-form" method="post">
+                            {% csrf_token %}
+                            {% if formData.type == 'self' %}
+                            <input type="hidden" name="type" value="{{formData.type}}">
+                            <input type="hidden" name="age" value="{{formData.age}}">
+                            <input type="hidden" name="gender" value="{{formData.gender}}">
+                            <input type="hidden" name="limit" value="{{formData.limit}}">
+                            {% endif %}
+                            {% if formData.type == 'parents' %}
+                            <input type="hidden" name="type" value="{{formData.type}}">
+                            <input type="hidden" name="gender" value="{{formData.gender}}">
+                            <input type="hidden" name="limit" value="{{formData.limit}}">
+                            {% endif %}
+                            {% if formData.type == 'family' %}
+                            <input type="hidden" name="type" value="{{formData.type}}">
+                            <input type="hidden" name="age" value="{{formData.age}}">
+                            <input type="hidden" name="wife_age" value="{{formData.wife_age}}">
+                            <input type="hidden" name="limit" value="{{formData.limit}}">
+                                {% for age in formData.kids %}
+                                <input type="hidden" name="kids" value="{{age}}">
+                                {% endfor %}
+                            {% endif %}
+                        
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Insurance Companies</h4>
+                            </div>
+                            
+                            {% for data in all_companies %}
+                            <div class="form-check">
+                                <input class="form-check-input" {% if data.pk|stringformat:"i" in company %} checked="checked" {% endif %} name="company" type="checkbox" value="{{data.pk}}" id="flexCheckDefaultcompany{{forloop.counter}}">
+                                <label class="form-check-label" for="flexCheckDefaultcompany{{forloop.counter}}">
+                                    {{data.comapny_name}}
+                                 </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Medical Coverage
+                                </h4>
+                            </div>
+                            {{limitSearched}}
+                            {% for limit in limits %}
+                            <div class="form-check">
+                                <input class="form-check-input" name="limit" {% if limit == limitSearched %} checked="checked" {% endif %} type="radio" value="{{limit}}" id="flexCheckDefault{{forloop.counter}}">
+                                <label class="form-check-label" for="flexCheckDefault{{forloop.counter}}">
+                                    {{limit}} 
+                                </label>
+                            </div>
+                           {% endfor %}
+                        </div>
+                    </form>
+                        <!-- <div class="filter">
+                            <div class="filter-title">
+                                <h4>Covid Coverage</h4>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Yes </label>
+                            </div>
+                        </div> -->
+                        <!-- <div class="filter">
+                            <div class="filter-title">
+                                <h4>Price Range</h4>
+                            </div>
+                            <div class="wrapper-price-range">
+
+                                <div class="slider-wrapper">
+                                    <div id="slider-range"></div>
+
+                                    <div class="range-wrapper">
+                                        <div class="range"></div>
+
+                                        <div class="gear-wrapper">
+                                            <div class="gear-large gear-one">
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                            </div>
+                                            <div class="gear-large gear-two">
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                                <div class="gear-tooth"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="marker marker-0"><sup>$</sup>10,000</div>
+                                    <div class="marker marker-100"><sup>$</sup>110,000+</div>
+                                </div>
+
+                            </div>
+
+                        </div> -->
+                        <!-- <div class="filter">
+                            <div class="filter-title">
+                                <h4>Sort</h4>
+                            </div>
+                            <div class="form-check form-switch"> <input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckChecked"> <label class="form-check-label"
+                                    for="flexSwitchCheckChecked">Recomended</label>
+                            </div>
+                            <div class="form-check form-switch"> <input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckChecked"> <label class="form-check-label"
+                                    for="flexSwitchCheckChecked">Cheapest</label>
+                            </div>
+                            <div class="form-check form-switch"> <input class="form-check-input" type="checkbox"
+                                    id="flexSwitchCheckChecked"> <label class="form-check-label"
+                                    for="flexSwitchCheckChecked">Expensive</label>
+                            </div>
+                        </div> -->
+                        <div class="filter">
+                            <div class="filter-title">
+                                <h4>Compare Policy</h4>
+                            </div>
+                            <div class="com-cont">
+                                <div class="compare-basket">
+                                    <a class="action action--button action--compare action--compare3" data-bs-toggle="modal"
+                                        data-bs-target="#compare-modal">
+                                        <i class="fa fa-check"></i>
+                                        <span class="action__text">Compare</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 co">
+
+
+
+                    {% for data in allData %}
+                    <div class="listing listing-travel">
+                        {% if data.policy.off > 0 %}
+                        <div class="badge-discount">
+                            <span>{{data.policy.off}}%</span><span> OFF</span>
+                        </div>
+                        {% endif %}
+                        <form action="{% url 'buyPolicyHealthFront' %}" method="post">
+
+                        <div class="row container-list">
+                            <div class="col-md-2 policy-col-one d-block d-sm-flex align-items-center">
+                                <div class="kotaks">
+                                    {% if data.policy.instant %}
+                                    <div class="instant-tag text-center">
+                                       
+                                        <span class="">Instant</span>
+                                    </div>
+                                    {% endif %}
+                                    <div class="center plan-name ">
+                                        <h4 class="nomargin darkergray pckg-name">
+                                            {{data.policy.company}}
+                                        </h4>
+                                        <input type="hidden" value="{{data.policy.pk}}">
+                                        <input type="hidden" class="kids" value="{{data.kids}}">
+                                        <input type="hidden" class="type" value="{{data.type}}">
+                                    </div>
+                                    <div class="thumb">
+                                        
+                                        <a href="{% if data.policy.company.redirect_link == None %}{% url 'companyProfile' pk=data.policy.company.pk%} {% else %} {{data.policy.company.redirect_link}}{% endif %}">
+                                            <img src="{{data.policy.company.logo.url}}" class="w-100 product__image">
+                                        </a>
+                                    </div>
+                                    {% if data.policy.coid19 %}
+
+                                    <div class="note text-center">
+                                        <span>COVID-19 Covered</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+
+                            
+
+
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="kotak">
+                                            <span class="rate">Hospitalization Cover:</span>
+                                            <span class="rate-number">{{data.policy.hospitalization}} per person</span>
+                                        </div>
+                                    </div>
+                                    
+                                    {% for feature in data.topFeatures %}
+
+                                   
+                                        <div class="col-4">
+                                            <div class="kotak">
+                                                <span class="rate">{{feature.feature}}:</span>
+                                                {% if feature.status == 'yes' %}
+                                                    <i class="fas fa-check-square" style="color:green;"></i>
+                                                {% elif feature.status == 'no'%}
+                                                    <i class="fas fa-times-circle" style="color:red;"></i>
+                                                {% else %}                                                
+                                                    <span class="rate-number">{{feature.status}}</span>                                                    
+                                                {% endif %}
+                                                
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="kotak-bottom mt-2">
+                                            <span class="rate">Cashless Treatment at:</span>
+                                            <span class="rate-number getlabsdata" style="cursor: pointer;"  data-bs-toggle="modal"
+                                            data-bs-target="#compare-labs">
+                                                <i class="fa fa-building"></i> {{data.hospital|length}} Hospitals <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="hidden" value="{{data.policy.pk}}">
+                                            <input type="hidden" value="hospitals">
+                                            <input type="hidden" value="{{data.hospital|length}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="kotak-bottom mt-2">
+                                            <span class="rate">Discounts Available at:</span>
+                                            <span class="rate-number getlabsdata" style="cursor: pointer;"  data-bs-toggle="modal"
+                                            data-bs-target="#compare-labs">
+                                                <i class="fa fa-bed"></i> {{data.lab|length}} Labs <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                            </span>
+                                            <input type="hidden" value="{{data.policy.pk}}">
+                                            <input type="hidden" value="labs">
+                                            <input type="hidden" value="{{data.lab|length}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="kotak-bottom mt-2">
+                                            <span class="rate">
+                                                
+                                                    <input type="checkbox" name="has_maternity" class="has_maternity"> Add Maternity Cover for: <span>{{data.policy.maternity_cover_price}}</span>
+                                            </span>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 d-block d-sm-flex align-items-center">
+                                <div class="kotaks">
+                                    <div class="enquiry">
+                                        <div class="right-price text-end mb-4">
+                                            <h4 class="price-right text-end fw-bold text-black">
+                                                {% if data.policy.off > 0 %}
+                                                <span class="rate-number"> Rs. <span class="policy-amount">{{data.discount_amount|floatformat:2}}</span></span>
+                                                <span class="rate-discount"><br>Rs. {{data.total_amount|floatformat:2}}</span>
+                                                {% else %}
+                                                    <span class="rate-number">Rs. <span class="policy-amount">{{data.total_amount|floatformat:2}}</span></span>
+                                                {% endif %}
+                                            </h4>
+                                            <span class="class-policy">Premium</span>
+                                        </div>
+                                        <label
+                                            class="btn btn-secondary buy_now enquire-btn mb-2 w-100 action action--compare-add"><input
+                                                class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i
+                                                class="fa fa-check"></i><span>Compare</span></label>
+                                        <a class="btn btn-secondary buy_now enquire-btn mb-2 w-100 addPolicy"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enquiry</a>
+                                            <input type="hidden" value="{{data.policy.policy_name}}">
+                                           
+                                                {% csrf_token %}
+                                                <!-- <input type="checkbox" style="display: none;" name="has_maternity" class="has_maternity2" > -->
+                                                <input type="hidden" name="quoteID" value="{{quoteID}}">
+                                                <input type="hidden" name="maternity_cover_price" value="{{data.policy.maternity_cover_price}}">
+                                                <input type="hidden" name="pk" value="{{data.policy.pk}}">
+                                                <input type="hidden" name="discount_amount" value="{{data.discount_amount|floatformat:2}}">
+                                                <input type="hidden" name="total_amount" value="{{data.total_amount|floatformat:2}}">
+                                                <button type="submit" class="btn btn-secondary buy_now buy-btn w-100">Buy Now</button>
+                                                {% if data.policy.recomended %}
+                                                    <i class="badge alert-success">Recomended</i>
+                                                {% endif %}
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="container-list-second">
+                                    <div class="text-center">
+                                        <span class="listing-detail"><a data-bs-toggle="collapse" href="#listone{{forloop.counter}}"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample">See
+                                                Detail</a>
+                                        </span>
+                                    </div>
+                                    <div class="collapse" id="listone{{forloop.counter}}">
+                                        <div class="card card-body my-2 detail-one">
+                                            <table class="table table-hover table-listing-detail table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Medical Benefits</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        
+                                                        {% for feature in data.detailFeatures %}
+                                                         
+                                                                <td>
+                                                                    {{feature.feature}}  <br>
+                                                                    <span>
+                                                                        {% if feature.status == 'yes' %}
+                                                                        <i class="fas fa-check-square" style="color:green;"></i>
+                                                                        {% elif feature.status == 'no'%}
+                                                                        <i class="fas fa-times-circle" style="color:red;"></i>
+                                                                        {% else %}
+                                                                        <span class="rate-number">{{feature.status}}</span>
+                                                                            
+                                                                        {% endif %}
+                                                                    </span>
+                                                                </td>
+                                                                {% if forloop.counter|divisibleby:3 %}
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                        <div class="card card-body my-2 detail-two">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="title-detail-two">
+                                                        <h3>Detail Policy</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row-table-detail mt-3 border-bottom">
+                                                <div class="col-md-3">
+                                                    <div class="title-detail">
+                                                        <h3>Policy Documents</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="align-items-center col-md-6 d-flex justify-content-between mb-2">
+                                                            <div class=" table-detail">
+                                                                <h3>
+                                                                    <a href="{{data.policy.policy_documents.url}}" style="color: black" download>
+                                                                        <i class="fas fa-file"></i> 
+                                                                        Download Document
+                                                                    </a>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="row row-table-detail mt-3 border-bottom">
+                                                <div class="col-md-3">
+                                                    <div class="title-detail">
+                                                        <h3>Claim Process</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="align-items-center col-md-6 d-flex justify-content-between mb-2"">
+                                                            <div class=" table-detail">
+                                                                <h3>
+                                                                    <a href="{{data.policy.claim_process.url}}" style="color: black" download>
+                                                                        <i class="fas fa-file"></i> 
+                                                                        Download Document
+                                                                    </a>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="row row-table-detail mt-3 border-bottom">
+                                                <div class="col-md-3">
+                                                    <div class="title-detail">
+                                                        <h3>More Features</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="align-items-center col-md-12 d-flex justify-content-between mb-2"">
+                                                            <div class=" table-detail">
+                                                                <p style="color: black">
+                                                                    {{data.policy.more_features|safe}}
+                                                                </p>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                        
+                                                </div>
+                                            </div>
+                                           
+                        
+        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+        
+
+{% endfor %}
+
+
+        </div>
+        </div>
+        </div>
+    </section>
+    <section class="footer-top mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="menu-footer">
+                        <h4>Our Company</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="">Our Story</a>
+                            </li>
+                            <li>
+                                <a href="">News & Blog</a>
+                            </li>
+                            <li>
+                                <a href="">Careers</a>
+                            </li>
+                            <li>
+                                <a href="">Customer Support</a>
+                            </li>
+                            <li>
+                                <a href="">Website Accessibility</a>
+                            </li>
+                            <li>
+                                <a href="">Our Story</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="menu-footer">
+                        <h4>CORPORATE INFO</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="">Auto Insurance</a>
+                            </li>
+                            <li>
+                                <a href="">Home Insurance</a>
+                            </li>
+                            <li>
+                                <a href="">Agent Locator</a>
+                            </li>
+                            <li>
+                                <a href="">Express Access</a>
+                            </li>
+                            <li>
+                                <a href="">Money Back Policy</a>
+                            </li>
+                            <li>
+                                <a href="">Life Insurance Companies</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-top-three">
+                        <h4>GET IN TOUCH</h4>
+                        <p>We're here to listen:</p>
+                        <ul class="list-unstyled">
+                            <li class="elementor-icon-list-item">
+                                <span class="elementor-icon-list-icon">
+                                    <i aria-hidden="true" class="far fa-building"></i> </span>
+                                <span class="elementor-icon-list-text">2390 NW 2nd Ave, Miami FL 33127, USA</span>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                                <a href="tel:03033781919">
+
+                                    <span class="elementor-icon-list-icon">
+                                        <i aria-hidden="true" class="fas fa-phone-alt"></i> </span>
+                                    <span class="elementor-icon-list-text"><b>(+92) 303-3781919</b></span>
+                                </a>
+                            </li>
+                            <li class="elementor-icon-list-item">
+                                <span class="elementor-icon-list-icon">
+                                    <i aria-hidden="true" class="far fa-clock"></i> </span>
+                                <span class="elementor-icon-list-text">9am to 7pm EST Monday to Friday</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-top-last">
+                        <h4>NEWSLETTER </h4>
+                        <p>Receive resources & tools that can help you prepare for the future. You can cancel anytime.
+                        </p>
+                        <div class="elementskit_input_element_container mb-2 ">
+                            <input type="email" name="email" class="ekit_mail_email ekit_form_control "
+                                placeholder="YOUR MAIL HERE" required="">
+
+                        </div>
+                        <div class="ekit_submit_input_holder elementskit_input_wraper">
+                            <button type="submit" class="ekit-mail-submit" name="ekit_mail_chimp">
+
+                                <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                Subscribe Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-left">
+                        <p><i class="far fa-copyright"></i> 2021, Easy Choice.<br>All Rights Reserved. Worked by <a
+                                href="http://analysteye.com/" target="_blank" rel="noopener"><strong><span
+                                        style="color: #ffffff;">Analyst
+                                        Eye</span></strong></a>.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-middle text-center mb-4 mb-ms-0">
+                        <a href="#">
+                            <img width="178" height="46"
+                                src="{% static 'logo-white.png' %}"
+                                class="attachment-medium size-medium"> </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-right">
+                        <ul class="list-unstyled text-center text-sm-end">
+                            <li class="facebook">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="linkedin">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                            <li class="youtube">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-youtube"></i></a>
+                            </li>
+                            <li class="mail">
+                                <a href="#" class="btn btn-outline-primary"><i class="far fa-envelope"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <a href="#0" class="cd-top"><i class="fas fa-long-arrow-alt-up"></i></a>
+
+    <section class="compare">
+        <button class="action action--close">
+            <i class="fa fa-times"></i>
+            <span class="action__text action__text--invisible">Close comparison overlay</span>
+        </button>
+    </section>
+    <div class="modal modal-enquiry fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Want more details?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-floating row g-3" method="post" action="{% url 'submit_inquire' %}">
+                        {% csrf_token %}
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Full name *</label>
+                                <input type="text" required name="full_name" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPassword4" class="form-label">Tel / Cell number *
+                                </label>
+                                <input type="number" required name="phone" class="form-control" id="inputPassword4">
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Email</label>
+                                <input type="email" required name="email" class="form-control" id="inputAddress" placeholder="ABC@gmail.com">
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+                           
+                            <label for="inputState" class="form-label">City</label>
+                            <select id="inputState" required name="city" class="form-select" style="width: 100%; ">
+                                <option value="">Choose...</option>
+                                <option value="Islamabad">Islamabad</option>
+                                <option value="" disabled>Punjab Cities</option>
+                                <option value="Ahmed Nager Chatha">Ahmed Nager Chatha</option>
+                                <option value="Ahmadpur East">Ahmadpur East</option>
+                                <option value="Ali Khan Abad">Ali Khan Abad</option>
+                                <option value="Alipur">Alipur</option>
+                                <option value="Arifwala">Arifwala</option>
+                                <option value="Attock">Attock</option>
+                                <option value="Bhera">Bhera</option>
+                                <option value="Bhalwal">Bhalwal</option>
+                                <option value="Bahawalnagar">Bahawalnagar</option>
+                                <option value="Bahawalpur">Bahawalpur</option>
+                                <option value="Bhakkar">Bhakkar</option>
+                                <option value="Burewala">Burewala</option>
+                                <option value="Chillianwala">Chillianwala</option>
+                                <option value="Chakwal">Chakwal</option>
+                                <option value="Chichawatni">Chichawatni</option>
+                                <option value="Chiniot">Chiniot</option>
+                                <option value="Chishtian">Chishtian</option>
+                                <option value="Daska">Daska</option>
+                                <option value="Darya Khan">Darya Khan</option>
+                                <option value="Dera Ghazi Khan">Dera Ghazi Khan</option>
+                                <option value="Dhaular">Dhaular</option>
+                                <option value="Dina">Dina</option>
+                                <option value="Dinga">Dinga</option>
+                                <option value="Dipalpur">Dipalpur</option>
+                                <option value="Faisalabad">Faisalabad</option>
+                                <option value="Ferozewala">Ferozewala</option>
+                                <option value="Fateh Jhang">Fateh Jang</option>
+                                <option value="Ghakhar Mandi">Ghakhar Mandi</option>
+                                <option value="Gojra">Gojra</option>
+                                <option value="Gujranwala">Gujranwala</option>
+                                <option value="Gujrat">Gujrat</option>
+                                <option value="Gujar Khan">Gujar Khan</option>
+                                <option value="Hafizabad">Hafizabad</option>
+                                <option value="Haroonabad">Haroonabad</option>
+                                <option value="Hasilpur">Hasilpur</option>
+                                <option value="Haveli Lakha">Haveli Lakha</option>
+                                <option value="Jatoi">Jatoi</option>
+                                <option value="Jalalpur">Jalalpur</option>
+                                <option value="Jattan">Jattan</option>
+                                <option value="Jampur">Jampur</option>
+                                <option value="Jaranwala">Jaranwala</option>
+                                <option value="Jhang">Jhang</option>
+                                <option value="Jhelum">Jhelum</option>
+                                <option value="Kalabagh">Kalabagh</option>
+                                <option value="Karor Lal Esan">Karor Lal Esan</option>
+                                <option value="Kasur">Kasur</option>
+                                <option value="Kamalia">Kamalia</option>
+                                <option value="Kamoke">Kamoke</option>
+                                <option value="Khanewal">Khanewal</option>
+                                <option value="Khanpur">Khanpur</option>
+                                <option value="Kharian">Kharian</option>
+                                <option value="Khushab">Khushab</option>
+                                <option value="Kot Addu">Kot Addu</option>
+                                <option value="Jauharabad">Jauharabad</option>
+                                <option value="Lahore">Lahore</option>
+                                <option value="Lalamusa">Lalamusa</option>
+                                <option value="Layyah">Layyah</option>
+                                <option value="Liaquat Pur">Liaquat Pur</option>
+                                <option value="Lodhran">Lodhran</option>
+                                <option value="Malakwal">Malakwal</option>
+                                <option value="Mamoori">Mamoori</option>
+                                <option value="Mailsi">Mailsi</option>
+                                <option value="Mandi Bahauddin">Mandi Bahauddin</option>
+                                <option value="Mian Channu">Mian Channu</option>
+                                <option value="Mianwali">Mianwali</option>
+                                <option value="Multan">Multan</option>
+                                <option value="Murree">Murree</option>
+                                <option value="Muridke">Muridke</option>
+                                <option value="Mianwali Bangla">Mianwali Bangla</option>
+                                <option value="Muzaffargarh">Muzaffargarh</option>
+                                <option value="Narowal">Narowal</option>
+                                <option value="Nankana Sahib">Nankana Sahib</option>
+                                <option value="Okara">Okara</option>
+                                <option value="Renala Khurd">Renala Khurd</option>
+                                <option value="Pakpattan">Pakpattan</option>
+                                <option value="Pattoki">Pattoki</option>
+                                <option value="Pir Mahal">Pir Mahal</option>
+                                <option value="Qaimpur">Qaimpur</option>
+                                <option value="Qila Didar Singh">Qila Didar Singh</option>
+                                <option value="Rabwah">Rabwah</option>
+                                <option value="Raiwind">Raiwind</option>
+                                <option value="Rajanpur">Rajanpur</option>
+                                <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                                <option value="Rawalpindi">Rawalpindi</option>
+                                <option value="Sadiqabad">Sadiqabad</option>
+                                <option value="Safdarabad">Safdarabad</option>
+                                <option value="Sahiwal">Sahiwal</option>
+                                <option value="Sangla Hill">Sangla Hill</option>
+                                <option value="Sarai Alamgir">Sarai Alamgir</option>
+                                <option value="Sargodha">Sargodha</option>
+                                <option value="Shakargarh">Shakargarh</option>
+                                <option value="Sheikhupura">Sheikhupura</option>
+                                <option value="Sialkot">Sialkot</option>
+                                <option value="Sohawa">Sohawa</option>
+                                <option value="Soianwala">Soianwala</option>
+                                <option value="Siranwali">Siranwali</option>
+                                <option value="Talagang">Talagang</option>
+                                <option value="Taxila">Taxila</option>
+                                <option value="Toba Tek Singh">Toba Tek Singh</option>
+                                <option value="Vehari">Vehari</option>
+                                <option value="Wah Cantonment">Wah Cantonment</option>
+                                <option value="Wazirabad">Wazirabad</option>
+                                <option value="" disabled>Sindh Cities</option>
+                                <option value="Badin">Badin</option>
+                                <option value="Bhirkan">Bhirkan</option>
+                                <option value="Rajo Khanani">Rajo Khanani</option>
+                                <option value="Chak">Chak</option>
+                                <option value="Dadu">Dadu</option>
+                                <option value="Digri">Digri</option>
+                                <option value="Diplo">Diplo</option>
+                                <option value="Dokri">Dokri</option>
+                                <option value="Ghotki">Ghotki</option>
+                                <option value="Haala">Haala</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Islamkot">Islamkot</option>
+                                <option value="Jacobabad">Jacobabad</option>
+                                <option value="Jamshoro">Jamshoro</option>
+                                <option value="Jungshahi">Jungshahi</option>
+                                <option value="Kandhkot">Kandhkot</option>
+                                <option value="Kandiaro">Kandiaro</option>
+                                <option value="Karachi">Karachi</option>
+                                <option value="Kashmore">Kashmore</option>
+                                <option value="Keti Bandar">Keti Bandar</option>
+                                <option value="Khairpur">Khairpur</option>
+                                <option value="Kotri">Kotri</option>
+                                <option value="Larkana">Larkana</option>
+                                <option value="Matiari">Matiari</option>
+                                <option value="Mehar">Mehar</option>
+                                <option value="Mirpur Khas">Mirpur Khas</option>
+                                <option value="Mithani">Mithani</option>
+                                <option value="Mithi">Mithi</option>
+                                <option value="Mehrabpur">Mehrabpur</option>
+                                <option value="Moro">Moro</option>
+                                <option value="Nagarparkar">Nagarparkar</option>
+                                <option value="Naudero">Naudero</option>
+                                <option value="Naushahro Feroze">Naushahro Feroze</option>
+                                <option value="Naushara">Naushara</option>
+                                <option value="Nawabshah">Nawabshah</option>
+                                <option value="Nazimabad">Nazimabad</option>
+                                <option value="Qambar">Qambar</option>
+                                <option value="Qasimabad">Qasimabad</option>
+                                <option value="Ranipur">Ranipur</option>
+                                <option value="Ratodero">Ratodero</option>
+                                <option value="Rohri">Rohri</option>
+                                <option value="Sakrand">Sakrand</option>
+                                <option value="Sanghar">Sanghar</option>
+                                <option value="Shahbandar">Shahbandar</option>
+                                <option value="Shahdadkot">Shahdadkot</option>
+                                <option value="Shahdadpur">Shahdadpur</option>
+                                <option value="Shahpur Chakar">Shahpur Chakar</option>
+                                <option value="Shikarpaur">Shikarpaur</option>
+                                <option value="Sukkur">Sukkur</option>
+                                <option value="Tangwani">Tangwani</option>
+                                <option value="Tando Adam Khan">Tando Adam Khan</option>
+                                <option value="Tando Allahyar">Tando Allahyar</option>
+                                <option value="Tando Muhammad Khan">Tando Muhammad Khan</option>
+                                <option value="Thatta">Thatta</option>
+                                <option value="Umerkot">Umerkot</option>
+                                <option value="Warah">Warah</option>
+                                <option value="" disabled>Khyber Cities</option>
+                                <option value="Abbottabad">Abbottabad</option>
+                                <option value="Adezai">Adezai</option>
+                                <option value="Alpuri">Alpuri</option>
+                                <option value="Akora Khattak">Akora Khattak</option>
+                                <option value="Ayubia">Ayubia</option>
+                                <option value="Banda Daud Shah">Banda Daud Shah</option>
+                                <option value="Bannu">Bannu</option>
+                                <option value="Batkhela">Batkhela</option>
+                                <option value="Battagram">Battagram</option>
+                                <option value="Birote">Birote</option>
+                                <option value="Chakdara">Chakdara</option>
+                                <option value="Charsadda">Charsadda</option>
+                                <option value="Chitral">Chitral</option>
+                                <option value="Daggar">Daggar</option>
+                                <option value="Dargai">Dargai</option>
+                                <option value="Darya Khan">Darya Khan</option>
+                                <option value="Dera Ismail Khan">Dera Ismail Khan</option>
+                                <option value="Doaba">Doaba</option>
+                                <option value="Dir">Dir</option>
+                                <option value="Drosh">Drosh</option>
+                                <option value="Hangu">Hangu</option>
+                                <option value="Haripur">Haripur</option>
+                                <option value="Karak">Karak</option>
+                                <option value="Kohat">Kohat</option>
+                                <option value="Kulachi">Kulachi</option>
+                                <option value="Lakki Marwat">Lakki Marwat</option>
+                                <option value="Latamber">Latamber</option>
+                                <option value="Madyan">Madyan</option>
+                                <option value="Mansehra">Mansehra</option>
+                                <option value="Mardan">Mardan</option>
+                                <option value="Mastuj">Mastuj</option>
+                                <option value="Mingora">Mingora</option>
+                                <option value="Nowshera">Nowshera</option>
+                                <option value="Paharpur">Paharpur</option>
+                                <option value="Pabbi">Pabbi</option>
+                                <option value="Peshawar">Peshawar</option>
+                                <option value="Saidu Sharif">Saidu Sharif</option>
+                                <option value="Shorkot">Shorkot</option>
+                                <option value="Shewa Adda">Shewa Adda</option>
+                                <option value="Swabi">Swabi</option>
+                                <option value="Swat">Swat</option>
+                                <option value="Tangi">Tangi</option>
+                                <option value="Tank">Tank</option>
+                                <option value="Thall">Thall</option>
+                                <option value="Timergara">Timergara</option>
+                                <option value="Tordher">Tordher</option>
+                                <option value="" disabled>Balochistan Cities</option>
+                                <option value="Awaran">Awaran</option>
+                                <option value="Barkhan">Barkhan</option>
+                                <option value="Chagai">Chagai</option>
+                                <option value="Dera Bugti">Dera Bugti</option>
+                                <option value="Gwadar">Gwadar</option>
+                                <option value="Harnai">Harnai</option>
+                                <option value="Jafarabad">Jafarabad</option>
+                                <option value="Jhal Magsi">Jhal Magsi</option>
+                                <option value="Kacchi">Kacchi</option>
+                                <option value="Kalat">Kalat</option>
+                                <option value="Kech">Kech</option>
+                                <option value="Kharan">Kharan</option>
+                                <option value="Khuzdar">Khuzdar</option>
+                                <option value="Killa Abdullah">Killa Abdullah</option>
+                                <option value="Killa Saifullah">Killa Saifullah</option>
+                                <option value="Kohlu">Kohlu</option>
+                                <option value="Lasbela">Lasbela</option>
+                                <option value="Lehri">Lehri</option>
+                                <option value="Loralai">Loralai</option>
+                                <option value="Mastung">Mastung</option>
+                                <option value="Musakhel">Musakhel</option>
+                                <option value="Nasirabad">Nasirabad</option>
+                                <option value="Nushki">Nushki</option>
+                                <option value="Panjgur">Panjgur</option>
+                                <option value="Pishin Valley">Pishin Valley</option>
+                                <option value="Quetta">Quetta</option>
+                                <option value="Sherani">Sherani</option>
+                                <option value="Sibi">Sibi</option>
+                                <option value="Sohbatpur">Sohbatpur</option>
+                                <option value="Washuk">Washuk</option>
+                                <option value="Zhob">Zhob</option>
+                                <option value="Ziarat">Ziarat</option>
+
+
+                            </select>
+                        </div>
+                        </div>
+                        
+                            
+                    </div>
+                        <input type="hidden" name="form_data" value="{{formDataFormSubmission}}" autocomplete="off">
+                        <input type="hidden" name="qoutId" value="{{quoteID}}">
+                        <input type="hidden" name="policy" value="" class="set_policy" autocomplete="off">
+                        <input type="hidden" name="policy_type" value="health" autocomplete="off">
+                        <div class="row my-4">
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Enquiry Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal modal-compare fade" id="compare-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="compare-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-custom-secondary text-center" id="comparisonModalLabel">Product
+                        Comparison</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body setComparedData">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary buy-btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- LABS -->
+    <div class="modal modal-compare fade" id="compare-labs" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="compare-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-custom-secondary text-center lh_head" id="comparisonModalLabel">
+                    
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive compare-packages">
+                    <table class="table table-bordered com-pack setlabs_hospitals">
+                     
+                        
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary buy-btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    
+</body>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function() {
+        $('.has_maternity').attr('checked', false);
+        
+        $('.has_maternity').change(function() {
+            var has_maternity =parseFloat($(this).next('span').text());
+            var policy_amount = $(this).parents().next().eq(0).find('.policy-amount').text();
+         
+            if($(this).is(':checked')){
+                $('.has_maternity2').attr('checked', true);
+                $(this).parents().next().eq(0).find('.policy-amount').text((parseFloat(policy_amount)+has_maternity).toFixed(2))
+            }else{
+                $('.has_maternity2').attr('checked', false);
+                $(this).parents().next().eq(0).find('.policy-amount').text(parseFloat((policy_amount)-has_maternity).toFixed(2))
+
+            }
+        })
+
+
+        $('.addPolicy').click(function() {
+            var policy_pk = $(this).next('input').val()
+            $('.set_policy').val(policy_pk)
+        })
+
+        $('.filter-form').children().find('input').change(function() {
+            $('.filter-form').submit()
+        })
+    })
+</script>
+<script>
+    //Get the button
+    /* Place this code in your JS file */
+    jQuery(document).ready(function ($) {
+        // browser window scroll (in pixels) after which the "back to top" link is shown
+        var offset = 300,
+            //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+            offset_opacity = 1200,
+            //duration of the top scrolling animation (in ms)
+            scroll_top_duration = 350,
+            //grab the "back to top" link
+            $back_to_top = $('.cd-top');
+
+        //hide or show the "back to top" link
+        $(window).scroll(function () {
+            ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $back_to_top.addClass('cd-fade-out');
+            }
+        });
+
+        //smooth scroll to top
+        $back_to_top.on('click', function (event) {
+            event.preventDefault();
+            $('body,html').animate({
+                scrollTop: 10
+            }, scroll_top_duration
+            );
+            $('body,html').animate({
+                scrollTop: 0
+            }, 0
+            );
+        });
+    });
+</script>
+<script>
+    $(function () {
+        // Initiate Slider
+        $('#slider-range').slider({
+            range: true,
+            min: 10000,
+            max: 110000,
+            step: 100,
+            values: [45000, 75000]
+        });
+
+        // Move the range wrapper into the generated divs
+        $('.ui-slider-range').append($('.range-wrapper'));
+
+        // Apply initial values to the range container
+        $('.range').html('<span class="range-value"><sup>$</sup>' + $('#slider-range').slider("values", 0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span><span class="range-divider"></span><span class="range-value"><sup>$</sup>' + $("#slider-range").slider("values", 1).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span>');
+
+        // Show the gears on press of the handles
+        $('.ui-slider-handle, .ui-slider-range').on('mousedown', function () {
+            $('.gear-large').addClass('active');
+        });
+
+        // Hide the gears when the mouse is released
+        // Done on document just incase the user hovers off of the handle
+        $(document).on('mouseup', function () {
+            if ($('.gear-large').hasClass('active')) {
+                $('.gear-large').removeClass('active');
+            }
+        });
+
+        // Rotate the gears
+        var gearOneAngle = 0,
+            gearTwoAngle = 0,
+            rangeWidth = $('.ui-slider-range').css('width');
+
+        $('.gear-one').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+        $('.gear-two').css('transform', 'rotate(' + gearTwoAngle + 'deg)');
+
+        $('#slider-range').slider({
+            slide: function (event, ui) {
+
+                // Update the range container values upon sliding
+
+                $('.range').html('<span class="range-value"><sup>$</sup>' + ui.values[0].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span><span class="range-divider"></span><span class="range-value"><sup>$</sup>' + ui.values[1].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</span>');
+
+                // Get old value
+                var previousVal = parseInt($(this).data('value'));
+
+                // Save new value
+                $(this).data({
+                    'value': parseInt(ui.value)
+                });
+
+                // Figure out which handle is being used
+                if (ui.values[0] == ui.value) {
+
+                    // Left handle
+                    if (previousVal > parseInt(ui.value)) {
+                        // value decreased
+                        gearOneAngle -= 7;
+                        $('.gear-one').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    } else {
+                        // value increased
+                        gearOneAngle += 7;
+                        $('.gear-one').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    }
+
+                } else {
+
+                    // Right handle
+                    if (previousVal > parseInt(ui.value)) {
+                        // value decreased
+                        gearOneAngle -= 7;
+                        $('.gear-two').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    } else {
+                        // value increased
+                        gearOneAngle += 7;
+                        $('.gear-two').css('transform', 'rotate(' + gearOneAngle + 'deg)');
+                    }
+
+                }
+
+                if (ui.values[1] === 110000) {
+                    if (!$('.range-alert').hasClass('active')) {
+                        $('.range-alert').addClass('active');
+                    }
+                } else {
+                    if ($('.range-alert').hasClass('active')) {
+                        $('.range-alert').removeClass('active');
+                    }
+                }
+            }
+        });
+
+        // Prevent the range container from moving the slider
+        $('.range, .range-alert').on('mousedown', function (event) {
+            event.stopPropagation();
+        });
+
+    });
+</script>
+<!-- <script src="assets/select2/select2.min.js"></script> -->
+<!-- <script src="assets/select2/select2cascades.js"></script> -->
+<!-- <script src="assets/custom.js"></script> -->
+
+{% endblock %}

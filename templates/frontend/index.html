@@ -1,0 +1,78 @@
+{% extends 'frontend/master.html' %}
+{% load static %}
+{% block body %}
+<!-- <link rel="stylesheet" href="{% static 'index/main-home.css'%}"> -->
+<!-- <link rel="stylesheet" href="{% static 'index/style.css'%}"> -->
+<link rel="stylesheet" href="{% static 'index/style(1).css'%}">
+<link rel="stylesheet" href="{% static 'index/panton-style.css'%}">
+<style>
+	li {
+    margin: 0;
+    padding: 0;
+    display: inline-block !important;
+    margin-left: 40px !important;
+}
+</style>
+<body style="background-color: #f2f7fa">
+<div id="" class="home-banner">
+	<div class="container">
+		<div class="dp-center box center col-md-6 fn dp-center">
+			<div class="top">
+				<h1 class="basecolor light fadeInDown animatable exbold">Insurance made simple for you</h1>
+			
+			</div>
+			<div class="bottom" style="background: #e5f2fb;">
+				<ul class="heading-features-icons no-list">
+					<li><a href="{% url 'carForm' %}">
+							<div class="box">
+								<div class="icon imggroup"><img class="" width="62px" height="42px"
+										src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/home-car.svg"
+										alt="Car Insurance"></div>
+								<div class="text">
+									Car
+								</div>
+							</div>
+						</a></li>
+					<!-- <li><a href="/insurance/bike">
+							<div class="box">
+								<div class="icon imggroup"><img class="" width="62px" height="42px"
+										src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/home-motorbike.svg"
+										alt="Motor bike insurance"></div>
+								<div class="text">
+									Bike
+								</div>
+							</div>
+						</a></li> -->
+					<li><a href="{% url 'healthForm' %}">
+							<div class="box">
+								<div class="icon imggroup"><img class="" width="62px" height="42px"
+										src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/home-health.svg"
+										alt="Health Insurance"></div>
+								<div class="text">
+									Health
+								</div>
+							</div>
+						</a></li>
+					<li><a href="{% url 'travelForm' %}">
+							<div class="box">
+								<div class="icon imggroup"><img class="" width="62px" height="42px"
+										src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/home-travel.svg"
+										alt="Travel Insurance"></div>
+								<div class="text">
+									Travel
+								</div>
+							</div>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="scroll-btn-sec">
+		<div class="box" style="text-align: center;"><a href="#scroll_sec1" class="scroll_1_btn"><img width="165px" height="72px" class="lozad"
+					data-src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/comp_png/scroll_btn-min.png"
+					src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/comp_png/scroll_btn-min.png"
+					data-loaded="true"></a></div>
+	</div>
+</div>
+</body>
+{% endblock %}

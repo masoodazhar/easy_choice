@@ -1,0 +1,281 @@
+{% extends 'backend/master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Policy Form<small> Create Policies  </small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false"><i
+                                class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="dropdown-item" href="#">Settings 1</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post">
+                   {% csrf_token %}
+                    <div class="row">
+                        <div class="col-3">
+                            {{form.company|as_crispy_field}}
+                        </div>
+                        <div class="col-3">
+                            {{form.policy_name|as_crispy_field}}
+                        </div>
+                        <div class="col-3">
+                            {{form.rate|as_crispy_field}}
+                        </div>
+                        <div class="col-3">
+                            {{form.installment_plane|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            {{form.off|as_crispy_field}}
+                        </div>
+                        <div class="col-2">
+                            {{form.tracking_amount|as_crispy_field}}
+                        </div>
+                        <div class="col-2">
+                            {{form.instant|as_crispy_field}}
+                        </div>
+                        <div class="col-2">
+                            {{form.coid19|as_crispy_field}}
+                            
+                        </div>
+                        <div class="col-2">
+                            {{form.recomended|as_crispy_field}}
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            {{form.policy_documents|as_crispy_field}}
+                        </div>
+                        <div class="col-3">
+                            {{form.claim_process|as_crispy_field}}
+                        </div>
+                    </div>
+                    <h2>Features</h2>
+                    <div class="ln_solid"></div>
+                    <br><br>
+                    {% if is_update %}
+                           
+                    <h3>Main Coverage </h3>
+                    <hr>
+                    <div class="row my-4">
+                        {% for box in main_coverage %}
+                            <div class="col-3">
+                                <input type="hidden" name="category" value="1">
+                                <input type="text" name="feature" readonly="readonly" value="{{box.feature}}" class="form-control">
+                            </div>
+                            <div class="col-3">
+                                <input type="text" name="status" value="{{box.status}}" placeholder="yes / no / or any text"  class="form-control">
+                            </div>
+                            {% if forloop.counter|divisibleby:2 %}
+                                </div>
+                                <div class="row my-3">
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+
+                    <h3>Third Party Coverage</h3>
+                    <hr>
+                    <div class="row my-3">
+                        {% for box in third_party_coverage %}
+                            <div class="col-3">
+                                <input type="hidden" name="category" value="2">
+                                <input type="text" name="feature" readonly="readonly" value="{{box.feature}}" class="form-control">
+                            </div>
+                            <div class="col-3">
+                                <input type="text" name="status" value="{{box.status}}" placeholder="yes / no / or any text"  class="form-control">
+                            </div>
+                            {% if forloop.counter|divisibleby:2 %}
+                                </div>
+                                <div class="row my-3">
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+
+                    <h3>Value Added Features</h3>
+                    <hr>
+                    <div class="row my-4">
+                        {% for box in value_added_features %}
+                            <div class="col-3">
+                                <input type="hidden" name="category" value="3">
+                                <input type="text" name="feature" readonly="readonly" value="{{box.feature}}" class="form-control">
+                            </div>
+                            <div class="col-3">
+                                <input type="text" name="status" value="{{box.status}}" placeholder="yes / no / or any text"  class="form-control">
+                            </div>
+                            {% if forloop.counter|divisibleby:2 %}
+                                </div>
+                                <div class="row my-3">
+                            {% endif %}
+                        {% endfor %}
+                        
+                    </div>
+                
+                    {% else %}
+                            {% for feature in featureBoxes %}
+                                <h3>{{feature.feature_name}}</h3>
+                                <hr>
+                                <div class="row">
+                                    {% for box in feature.boxes %}
+                                        <div class="col-3">
+                                            <input type="hidden" name="category" value="{{feature.category}}">
+                                            <input type="text" name="feature" readonly="readonly" value="{{box.feature}}" class="form-control">
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="text" name="status" value="no" placeholder="yes / no / or any text"  class="form-control">
+                                        </div>
+                                        {% if forloop.counter|divisibleby:2 %}
+                                            </div>
+                                        <div class="row my-3">
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                </div>
+                            {% endfor %}
+
+                    {% endif %}
+                   
+                    <div class="row my-4">
+                        <div class="col-12">
+                            <div class="item form-group">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Policies List</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                           
+                            <table id="datatable-checkbox"
+                                class="table table-striped table-bordered bulk_action"
+                                style="width:100%">
+                                <thead>
+                                    <tr>
+                                      
+                                        <th>Company</th>
+                                        <th>Policy Name</th>
+                                        <th>Rate</th>
+                                        <th>Installment</th>
+                                        <th>Off In</th>
+                                        <th>Tracking Amount</th>
+                                        <th>Instant</th>
+                                        <th>Coid19</th>
+                                        <th>Documents</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in PolicyList %}
+                                    <tr>
+                                        
+                                        <td>{{data.company}}</td>
+                                        <td>{{data.policy_name}}</td>
+                                        <td>{{data.rate}}</td>
+                                        <td>{{data.installment_plane}}</td>
+                                        <td>{{data.off}}</td>
+                                        <td>{{data.tracking_amount}}</td>
+                                        <td>{{data.instant}}</td>
+                                        <td>{{data.coid19}}</td>
+                                        <td>
+                                            <a href="{{data.policy_documents.url}}" download>Policy Documents</a> |
+                                            <a href="{{data.claim_process.url}}" download>Claim Process</a> 
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'UpdatePolicy' pk=data.pk %}" class="btn btn-primary"> <i class="fa fa-pencil-square-o"></i> Edit</a>
+                                            <a href="{% url 'DeletePolicy' pk=data.pk %}" onclick="return confirm('Are you sure you want to delete this company?')" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function() {
+       
+        var i = 1;
+        $('.addRows').click(function(e){
+            e.preventDefault();
+            
+            var row = $('.getRows').html()
+            var value = '<div class="row">' + row ;
+                value +='<div class="row"><div class="col-md-4 my-4">';
+                    value +='<input type="button" class="btn btn-danger removeRows" value="-">';
+                value +='</div> </div> ';
+                
+            i++;
+            $('.setRows').append(value);
+            $('textarea[name="description"]').summernote();
+        });
+
+        $('.setRows').delegate('.removeRows','click',function(e){
+          e.preventDefault(); 
+          $(this).parent().parent('span').remove();
+        })
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends 'frontend/master.html' %}
+{% load static %}
+{% block body %}
+
+    <section class="section buy">
+        <div class="container">
+            <div class="row my-4">
+                <div class="col-md-4">
+                    <div class="sidebar p-3">
+                        <div class="car-model">
+                            <span class="d-block">{{formData.model}}</span>
+                            <span>{{formData.manufacturingyear}} PKR {{formData.estimated}}</span>
+                        </div>
+                        <div class="kotaks">
+                            <div class="center plan-name ">
+                                <h4 class="nomargin darkergray pckg-name">{{allData.policy.company}}</h4>
+                            </div>
+                            <div class="thumb">
+                                <img src="{{allData.policy.company.logo.url}}" class="w-100 product__image">
+                            </div>
+                            <div class="disc-buy text-center">
+                                {% if allData.policy.off > 0 %}
+                                <span class="">{{allData.policy.off}}% OFF</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="kotak">
+                            <span class="rate">Rate</span>
+                            <span class="rate-number">{{allData.policy.rate}}%</span>
+                        </div>
+                        {% if allData.policy.installment_plane > 0 %}
+                        <div class="kotak">
+                            <span class="rate">Installment Plan</span>
+                            <span class="rate-number">Rs. {{allData.installment_amount|floatformat:2}}  / <span class="rate-month">month</span>
+                            </span>
+                        </div>
+                        {% endif %}
+                        <div class="kotak">
+                            <span class="rate">Total
+                            </span>
+                            <div>
+                                {% if allData.policy.off > 0 %}
+                                    <span class="rate-number">Rs {{allData.discount_amount|floatformat:2}}</span>
+                                    <span class="rate-discount">Rs {{allData.total_amount|floatformat:2}}</span>
+                                {% else %}
+                                    <span class="rate-number">Rs {{allData.total_amount|floatformat:2}}</span>
+                                {% endif %}
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="sidebar form-buy-one p-3">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <h3>Car & Owner Details
+                                </h3>
+                            </div>
+                            </div>
+                        <form class="row g-3 form-floating" method="post" action="{% url 'submit_buy'%}">
+                            {% csrf_token %}
+                            <div class="col-md-6 form-floating">
+                                <input type="text" required name="car_owner_name" class="form-control" id="floatingInput" placeholder="Car Owner Name">
+                                <label for="floatingInput">Car Owner Name</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <input type="number" required name="cnic" class="form-control cnicformat" id=""
+                                    placeholder="13 Digit CNIC No">
+                                <label for="floatingInput">13 Digit CNIC No</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <input type="number" name="phone" required class="form-control" id="floatingInput" placeholder="Phone Number">
+                                <label for="floatingInput">Phone Number</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <input type="email" required name="email" class="form-control" id="floatingInput" placeholder="Your Email">
+                                <label for="floatingInput">Your Email</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                               
+                                <input type="text" required name="servey_location_address" class="form-control" id="floatingInput"
+                                    placeholder="Survey Location Address">
+                                <label for="floatingInput">Survey Location Address</label>
+                            </div>
+
+                            <div class="col-md-6 form-floating">
+                                <input type="text" required name="car_registeration_number" id="floatingInput" class="form-control" required="required"
+                                    placeholder="Car Registration No">
+                                <label for="floatingInput">Car Registration No</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <input type="car-date" required name="date" class="form-control dateselect2" placeholder="Date of birth">
+                                <label for="floatingInput">Select date for inspection</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <select class="form-select" required name="time" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    <option value="9am-12pm">9am - 12pm</option>
+                                    <option value="12pm-3pm">12pm - 3pm</option>
+                                    <option value="3pm-6pm">3pm - 6pm</option>
+                                </select>
+                                <!-- <label for="floatingSelect">Works with selects</label> -->
+                            </div>
+                            <input type="hidden" value="{{formDataForSubmission}}" name="form_data">
+                            <input type="hidden" value="{{generateQuotaId}}" name="quoteID">
+                            <input type="hidden" value="{{allData.policy.pk}}" name="policy">
+                            <div class="col-12">
+                                <button type="submit" class="btn buy-btn btn-primary">Schedule Survey</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-left">
+                        <p><i class="far fa-copyright"></i> 2021, Easy Choice.<br>All Rights Reserved. Worked by <a href="http://analysteye.com/"
+                                target="_blank" rel="noopener"><strong><span style="color: #ffffff;">Analyst
+                                        Eye</span></strong></a>.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-middle text-center">
+                        <a href="#">
+                            <img width="178" height="46"
+                                src="{% static 'logo-white.png' %}"
+                                class="attachment-medium size-medium"> </a>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-right">
+                        <ul class="text-end">
+                            <li class="facebook">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="linkedin">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                            <li class="youtube">
+                                <a href="#" class="btn btn-outline-primary"><i class="fab fa-youtube"></i></a>
+                            </li>
+                            <li class="mail">
+                                <a href="#" class="btn btn-outline-primary"><i class="far fa-envelope"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <a href="#0" class="cd-top"><i class="fas fa-long-arrow-alt-up"></i></a>
+</body>
+
+{% endblock %}
+
+{% block js %}
+
+<script>// https://github.com/uxsolutions/bootstrap-datepicker
+
+    $(document).ready(function () {
+        $('.dateselect2').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true
+        });
+    });
+</script>
+<script>
+    //Get the button
+   /* Place this code in your JS file */
+jQuery(document).ready(function($){
+    // browser window scroll (in pixels) after which the "back to top" link is shown
+    var offset = 300,
+    //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+        offset_opacity = 1200,
+    //duration of the top scrolling animation (in ms)
+        scroll_top_duration = 350,
+    //grab the "back to top" link
+        $back_to_top = $('.cd-top');
+
+    //hide or show the "back to top" link
+    $(window).scroll(function(){
+        ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+        if( $(this).scrollTop() > offset_opacity ) {
+            $back_to_top.addClass('cd-fade-out');
+        }
+    });
+
+    //smooth scroll to top
+    $back_to_top.on('click', function(event){
+        event.preventDefault();
+        $('body,html').animate({
+                scrollTop: 10
+            }, scroll_top_duration
+        );
+        $('body,html').animate({
+                scrollTop: 0
+            }, 0
+        );
+    });
+});
+</script>
+{% endblock %}

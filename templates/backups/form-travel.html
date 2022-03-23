@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/select2/select2.min.css" rel="stylesheet">
+    <link href="assets/select2/select2.bs.min.css" rel="stylesheet">
+    <link href="assets/datepicker/datepicker.css
+    " rel="stylesheet">
+    <link href="assets/custom.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <section id="page-heading" class="mt-5 prd-pgheading h-section tl-section1 carcampiegn">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col">
+
+                    <div class="form-wrap box-shadow-sm">
+                        <div class="icon-form">
+                            <img src="assets/img/icon/travel-form-icon.png" class="w-100">
+                        </div>
+                        <div class="head-form mb-4">
+                            <h4>Travel insurance at best rate</h4>
+
+                        </div>
+
+                        <form class="form-horizontal">
+                            <div class="top">
+                                <div id="h-formx" class="auto-frm form-steps">
+                                    <div class="form-group col-md-12 col-sm-6 col-xs-12 form_arrow mb-4">
+                                        <select name="brand" id="brand" class="form-control as">
+                                            <option>Country</option>
+                                            <option value="honda">USA</option>
+                                            <option value="toyota">UK</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-6 col-xs-12 form_arrow mb-4">
+                                        <span class="select2-selection select2-selection--single form-control">
+                                            <a class="select2-selection__rendered pick-date-travel-toogle"
+                                                data-bs-toggle="collapse" href="#collapseExample" role="button"
+                                                aria-expanded="false" aria-controls="collapseExample">
+                                                Trip start & end date
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="collapse mb-4" id="collapseExample">
+                                        <div class="card card-body date-pick-travel">
+                                            <div class="row">
+                                                <div class="form-group col-sm-6 col-xs-12 form_arrow mb-4">
+                                                    <label for="brand" class="car-label1">Departing On</label>
+                                                    <input type="car-date" class="form-control dateselect2"
+                                                        placeholder="Pick Date">
+
+                                                </div>
+                                                <div class="form-group col-sm-6 col-xs-12 form_arrow mb-4">
+                                                    <label for="brand" class="car-label1">Returning On</label>
+                                                    <input type="car-date" class="form-control dateselect2"
+                                                        placeholder="Pick Date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-6 col-xs-12 form_arrow mb-4">
+                                        <span class="select2-selection select2-selection--single form-control">
+                                            <a class="select2-selection__rendered pick-date-travel-toogle"
+                                                data-bs-toggle="collapse" href="#collapseExample2" role="button"
+                                                aria-expanded="false" aria-controls="collapseExample">
+                                                Passenger Travelling
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="collapse mb-4" id="collapseExample2">
+                                        <div class="card card-body date-pick-travel">
+     
+                                            <ul class="nav row" id="myTab" role="tablist">
+                                                <li class="col-6" role="presentation">
+                                                  <a class="w-100 p-2 p-sm-4 active travel-icon border text-center" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><i
+                                                    class="fas fa-users d-block mb-2"></i>
+                                                <span>Individual</span></a>
+                                                </li>
+                                                <li class="col-6" role="presentation">
+                                                  <a class="w-100 p-2 p-sm-4 travel-icon border text-center" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><i
+                                                    class="fas fa-users d-block mb-2"></i>
+                                                <span>Family</span></a>
+                                                </li>
+                                              </ul>
+                                              
+                                              <!-- Tab panes -->
+                                              <div class="tab-content mt-4">
+                                                <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab"><div class="form-group">
+                                                    <label for="brand" class="car-label1">Date of birth</label>
+                                                    <input type="car-date" class="form-control dateselect2" placeholder="Date of birth">
+
+                                                </div></div>
+                                                <div class="tab-pane bg-white border p-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">Note!If any of the traveler is above 64 years old, apply for an individual travel policy for them. Family includes You,Spouse and up to 4 children (below 18).</div>
+                                              </div>
+                                        </div>
+                                        </div>
+                                        <a href="listing-travel.html"
+                                            class="btn-primary btn-md btn semibold btn-next-1 btn-form-next"
+                                            data-toggle="tab">
+                                            See Plan <i class="icofont icofont-arrow-right ml-10"></i></a>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /container -->
+    </section>
+</body>
+<script src="assets/jquery/jquery.slim.js"></script>
+<script src="assets/datepicker/datepicker.js"></script>
+<script src="assets/popper/popper.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/select2/select2.min.js"></script>
+<script src="assets/select2/select2cascades.js"></script>
+<script src="assets/custom.js"></script>
+<script>// https://github.com/uxsolutions/bootstrap-datepicker
+
+    $(document).ready(function () {
+        $('.dateselect2').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true,
+            container: '.auto-frm'
+        });
+    });
+</script>
+
+</html>

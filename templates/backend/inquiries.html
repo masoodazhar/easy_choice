@@ -1,0 +1,77 @@
+{% extends 'backend/master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>All Inquiry Requests</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                           
+                            <table id="datatable-checkbox"
+                                class="table table-striped table-bordered bulk_action"
+                                style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Policy Type</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Quote Id</th>
+                                        <th>City</th>
+                                        <th>Card Details</th>
+                                        <th>Policy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in inq %}
+                                        <tr>
+                                            <td>{{data.policy_type}}</td>
+                                            <td>{{data.full_name}}</td>
+                                            <td>{{data.phone}}</td>
+                                            <td>{{data.email}}</td>
+                                            <td>{{data.quoteid}}</td>
+                                            <td>{{data.city}}</td>
+                                            <td>
+                                                {% for key, value in data.form_data.items %}
+                                                        <b>{{key}}:</b> {{value}}
+                                                        <br>
+                                                {% endfor %}
+
+                                            </td>
+                                           <td>{{data.policy}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
