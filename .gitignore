@@ -1,0 +1,9 @@
+*.pyc
+*.ipynb
+*.xml
+*.iml
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.env

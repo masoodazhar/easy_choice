@@ -295,7 +295,7 @@
                                         <a class="btn btn-secondary buy_now enquire-btn mb-2 w-100 addPolicy"
                                             data-bs-toggle="modal" data-bs-target="#staticBackdrop">Enquiry</a>
                                             <input type="hidden" value="{{data.policy_obj.policy_name}}">
-                                            <form action="{% url 'buyPolicyTravel' %}" method="post">
+                                            <form action="{% url 'buyPolicyTravelForm' %}" method="post">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="quoteID" value="{{quoteID}}">
                                                 <input type="hidden" name="pk" value="{{data.policy_obj.pk}}">

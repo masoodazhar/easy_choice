@@ -48,7 +48,7 @@ urlpatterns = [
     path('travel-search/', travelForm, name='travelForm'),
     path('TravelListing/', listingTravel, name='listingTravel'),
     path('ComparePoliciesTravel/', ComparePoliciesTravel, name='ComparePoliciesTravel'),
-    path('Buy/PolicyTravel', buyPolicyTravel, name='buyPolicyTravel'),
+    path('Buy/PolicyTravel', buyPolicyTravel, name='buyPolicyTravelForm'),
     path('submit_buy_travel/', submit_buy_travel, name='submit_buy_travel'),
     path('thankyouTravel/<int:pk>/Travel', thankyouTravel, name='thankyouTravel'),
 
